@@ -15,7 +15,7 @@ from src.scraper.detalhes_playwright import DetalhesScraperPlaywright
 from src.core.settings import settings
 from src.core.logger import get_logger
 from src.core.state_manager import StateManager
-from src.api.schemas.pedido_schema import PedidosResponseSchema, PedidoDetalhesSchema
+from src.api.schemas.pedido_schema import PedidosResponseSchema, PedidoDetalhesSchema, PaginationMetadata
 
 logger = get_logger()
 
@@ -24,15 +24,60 @@ class PedidosController:
     """Controller para gerenciar extração de pedidos."""
     
     @staticmethod
-    async def extract_all_pedidos_full() -> PedidosResponseSchema:
-        """Extrai todos os pedidos com detalhes completos."""
-        if settings.USE_PLAYWRIGHT:
-            response = await PedidosController._extract_with_playwright()
-        else:
-            response = PedidosController._extract_with_requests()
+    async def extract_all_pedidos_full(
+        last_id: Optional[int] = None,
+        limit: Optional[int] = None
+    ) -> PedidosResponseSchema:
+        """Extrai pedidos com detalhes completos, com suporte a paginação.
         
-        # Salva maior ID encontrado (mesma lógica do incremental)
-        if response.pedidos:
+        Args:
+            last_id: Último ID conhecido. Retorna apenas pedidos com ID > last_id.
+            limit: Limite de pedidos a retornar. Se não fornecido, retorna todos.
+        """
+        if settings.USE_PLAYWRIGHT:
+            response = await PedidosController._extract_with_playwright(last_id=last_id, limit=limit)
+        else:
+            response = PedidosController._extract_with_requests(last_id=last_id, limit=limit)
+        
+        # Calcula metadados de paginação se limit foi usado
+        if limit is not None:
+            # Encontra o último ID processado
+            last_id_processed = None
+            if response.pedidos:
+                pedido_ids = [
+                    p.id for p in response.pedidos 
+                    if p.id is not None
+                ]
+                if pedido_ids:
+                    # Converte para int se necessário
+                    int_ids = []
+                    for pid in pedido_ids:
+                        try:
+                            pid_int = int(pid) if isinstance(pid, str) and pid.isdigit() else pid
+                            if isinstance(pid_int, int):
+                                int_ids.append(pid_int)
+                        except (ValueError, TypeError):
+                            continue
+                    if int_ids:
+                        last_id_processed = max(int_ids)
+            
+            # Determina se há mais pedidos
+            # Se retornou exatamente 'limit' pedidos, pode haver mais
+            has_more = len(response.pedidos) == limit
+            
+            pagination = PaginationMetadata(
+                last_id_processed=last_id_processed,
+                has_more=has_more,
+                total_available=None,  # Não sabemos sem contar tudo
+                limit=limit,
+                last_id_requested=last_id
+            )
+            response.pagination = pagination
+        
+        # Salva maior ID encontrado apenas se NÃO estiver usando paginação
+        # (comportamento original do /full quando não há limit)
+        # Não salvar estado automaticamente quando usar paginação (diferente do /incremental)
+        if limit is None and response.pedidos:
             max_id = None
             for pedido in response.pedidos:
                 pedido_id = pedido.id
@@ -56,13 +101,21 @@ class PedidosController:
         return response
     
     @staticmethod
-    def _extract_with_requests() -> PedidosResponseSchema:
-        """Extrai usando requests (método original)."""
+    def _extract_with_requests(
+        last_id: Optional[int] = None,
+        limit: Optional[int] = None
+    ) -> PedidosResponseSchema:
+        """Extrai usando requests (método original).
+        
+        Args:
+            last_id: Último ID conhecido. Retorna apenas pedidos com ID > last_id.
+            limit: Limite de pedidos a retornar. Se não fornecido, retorna todos.
+        """
         try:
             with get_authenticated_session() as session:
                 # Extrai listagem
                 listagem_scraper = ListagemScraper(session)
-                pedidos_listagem = listagem_scraper.extract_all_pedidos()
+                pedidos_listagem = listagem_scraper.extract_all_pedidos(last_order_id=last_id, limit=limit)
                 
                 # Extrai detalhes de cada pedido
                 detalhes_scraper = DetalhesScraper(session)
@@ -97,8 +150,16 @@ class PedidosController:
             raise
     
     @staticmethod
-    async def _extract_with_playwright() -> PedidosResponseSchema:
-        """Extrai usando Playwright."""
+    async def _extract_with_playwright(
+        last_id: Optional[int] = None,
+        limit: Optional[int] = None
+    ) -> PedidosResponseSchema:
+        """Extrai usando Playwright.
+        
+        Args:
+            last_id: Último ID conhecido. Retorna apenas pedidos com ID > last_id.
+            limit: Limite de pedidos a retornar. Se não fornecido, retorna todos.
+        """
         try:
             async with PlaywrightSession() as playwright_session:
                 # Faz login
@@ -106,7 +167,7 @@ class PedidosController:
                 
                 # Extrai listagem
                 listagem_scraper = ListagemScraperPlaywright(page)
-                pedidos_listagem = await listagem_scraper.extract_all_pedidos()
+                pedidos_listagem = await listagem_scraper.extract_all_pedidos(last_order_id=last_id, limit=limit)
                 
                 # Extrai detalhes de cada pedido
                 detalhes_scraper = DetalhesScraperPlaywright(page)
@@ -141,7 +202,7 @@ class PedidosController:
             # Fallback para requests se Playwright falhar
             logger.warning("playwright_failed_fallback_to_requests")
             try:
-                return PedidosController._extract_with_requests()
+                return PedidosController._extract_with_requests(last_id=last_id, limit=limit)
             except Exception as e2:
                 logger.error("fallback_also_failed", error=str(e2))
                 raise

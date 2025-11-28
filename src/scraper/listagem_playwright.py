@@ -338,20 +338,21 @@ class ListagemScraperPlaywright:
         rows = soup.select(".nk-tb-item:not(.nk-tb-head)")
         return len(rows) > 0
     
-    async def extract_all_pedidos(self, last_order_id: Optional[int] = None) -> List[Dict]:
+    async def extract_all_pedidos(self, last_order_id: Optional[int] = None, limit: Optional[int] = None) -> List[Dict]:
         """Extrai todos os pedidos de todas as páginas.
         
         Args:
             last_order_id: Se fornecido, para de buscar quando encontrar pedido com ID <= este valor.
                           Retorna apenas pedidos com ID > last_order_id.
+            limit: O número máximo de pedidos a retornar.
         """
         start_time = DebugHelper.start_timer("extract_all_pedidos")
         all_pedidos = []
         page = 1
         found_last_order = False
         
-        DebugHelper.log_step("extract_all_pedidos_start", {"last_order_id": last_order_id})
-        logger.info("scraping_page_start", page=page, last_order_id=last_order_id)
+        DebugHelper.log_step("extract_all_pedidos_start", {"last_order_id": last_order_id, "limit": limit})
+        logger.info("scraping_page_start", page=page, last_order_id=last_order_id, limit=limit)
         
         while True:
             try:
@@ -379,6 +380,12 @@ class ListagemScraperPlaywright:
                 
                 page_pedidos = []
                 for i, row in enumerate(rows):
+                    # Verifica se já atingiu o limite antes de processar mais pedidos
+                    if limit is not None and len(all_pedidos) >= limit:
+                        logger.info("limit_reached", current_pedidos=len(all_pedidos), limit=limit)
+                        found_last_order = True  # Trata limite atingido como condição de parada
+                        break
+                    
                     pedido = self._extract_pedido_from_row(row)
                     if pedido:
                         pedido_id = pedido.get("id")
@@ -412,13 +419,18 @@ class ListagemScraperPlaywright:
                 all_pedidos.extend(page_pedidos)
                 print(f"[INFO] Página {page} processada: {len(page_pedidos)} pedidos encontrados")
                 
-                # Se encontrou último pedido conhecido, para de buscar
-                if found_last_order:
-                    logger.info("stopping_at_last_order", page=page, last_order_id=last_order_id)
-                    print(f"[INFO] Parando busca: encontrado pedido com ID <= {last_order_id}")
-                    DebugHelper.log_step("extract_all_pedidos_stopped_at_last_order", {
+                # Se encontrou último pedido conhecido OU atingiu o limite, para de buscar
+                if found_last_order or (limit is not None and len(all_pedidos) >= limit):
+                    logger.info("stopping_condition_met", page=page, last_order_id=last_order_id, limit=limit, total_collected=len(all_pedidos))
+                    if found_last_order:
+                        print(f"[INFO] Parando busca: encontrado pedido com ID <= {last_order_id}")
+                    else:
+                        print(f"[INFO] Parando busca: limite de {limit} pedidos atingido")
+                    DebugHelper.log_step("extract_all_pedidos_stopped_condition_met", {
                         "page": page,
-                        "last_order_id": last_order_id
+                        "last_order_id": last_order_id,
+                        "limit": limit,
+                        "total_collected": len(all_pedidos)
                     })
                     break
                 
@@ -458,22 +470,28 @@ class ListagemScraperPlaywright:
                 break
         
         # Filtra pedidos finais para garantir que apenas ID > last_order_id sejam retornados
-        if last_order_id is not None:
-            filtered_pedidos = []
-            for pedido in all_pedidos:
-                pedido_id = pedido.get("id")
+        # E aplica o limite final
+        final_pedidos = []
+        for pedido in all_pedidos:
+            pedido_id = pedido.get("id")
+            if last_order_id is not None:
                 if pedido_id is not None:
                     try:
                         pedido_id_int = int(pedido_id) if isinstance(pedido_id, str) and pedido_id.isdigit() else pedido_id
                         if isinstance(pedido_id_int, int) and pedido_id_int > last_order_id:
-                            filtered_pedidos.append(pedido)
+                            final_pedidos.append(pedido)
                     except (ValueError, TypeError):
-                        # Se não conseguir converter, mantém o pedido
-                        filtered_pedidos.append(pedido)
+                        final_pedidos.append(pedido)
                 else:
-                    # Se não tem ID, mantém o pedido
-                    filtered_pedidos.append(pedido)
-            all_pedidos = filtered_pedidos
+                    final_pedidos.append(pedido)
+            else:
+                final_pedidos.append(pedido)
+        
+        # Aplica limite final se fornecido
+        if limit is not None:
+            final_pedidos = final_pedidos[:limit]
+        
+        all_pedidos = final_pedidos
         
         DebugHelper.log_step("extract_all_pedidos_complete", {"total_pedidos": len(all_pedidos), "total_pages": page - 1})
         DebugHelper.end_timer(start_time, "extract_all_pedidos", {

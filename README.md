@@ -46,8 +46,10 @@ uvicorn src.main:app --reload --port 8000
 
 A API estará disponível em:
 - **API**: http://localhost:8000
-- **Swagger**: http://localhost:8000/docs
-- **ReDoc**: http://localhost:8000/redoc
+- **Swagger**: http://localhost:8000/docs (documentação interativa com exemplos curl)
+- **ReDoc**: http://localhost:8000/redoc (documentação alternativa)
+
+> **💡 Dica:** Acesse `/docs` para ver todos os endpoints com exemplos curl prontos para copiar e testar!
 
 ## 🐳 Docker
 
@@ -63,70 +65,131 @@ docker build -t mtpremiado-api-extract .
 docker run -p 8000:8000 --env-file .env mtpremiado-api-extract
 ```
 
+## 📖 Documentação
+
+### Guia Completo de Uso
+
+Para documentação detalhada, exemplos passo a passo e guia de testes, consulte:
+- **[API_GUIDE.md](./API_GUIDE.md)** - Guia completo com exemplos curl, testes recomendados e troubleshooting
+
+### Documentação Interativa
+
+- **Swagger UI**: Acesse `http://localhost:8000/docs` para documentação interativa com exemplos curl
+- **ReDoc**: Acesse `http://localhost:8000/redoc` para documentação alternativa
+
 ## 📡 Endpoints
+
+> **📖 Guia Completo:** Para documentação detalhada com exemplos passo a passo, consulte **[API_GUIDE.md](./API_GUIDE.md)**
 
 ### `GET /api/pedidos/full`
 
-Extrai todos os pedidos com detalhes completos.
+Extrai todos os pedidos com detalhes completos. Suporta paginação para download em lotes.
 
-**Nota:** O método usado (requests ou Playwright) é determinado pela variável `USE_PLAYWRIGHT` no `.env`. Playwright é necessário para sites que carregam conteúdo via JavaScript (como Livewire).
+**Parâmetros:**
+- `last_id` (opcional): Último ID conhecido. Retorna apenas pedidos com ID > last_id.
+- `limit` (opcional): Limite de pedidos a retornar. Se não fornecido, retorna todos.
 
 **Comportamento:**
-- Busca todos os pedidos de todas as páginas
-- Salva automaticamente o maior ID encontrado em `data/last_order_state.json` (mesmo comportamento do endpoint incremental)
+- **Sem parâmetros**: Busca todos os pedidos de todas as páginas
+- **Com `limit`**: Retorna no máximo `limit` pedidos e inclui metadados de paginação
+- **Com `last_id` e `limit`**: Continua de onde parou (para paginação)
+- Salva automaticamente o maior ID encontrado apenas quando NÃO usa paginação
 
-**Resposta:** JSON com todos os pedidos encontrados. O JSON também é salvo automaticamente em `data/exports/pedidos_{timestamp}.json` se `EXPORT_JSON=true`.
+**Exemplos:**
+```bash
+# Buscar todos os pedidos (sem paginação)
+curl -X GET 'http://localhost:8000/api/pedidos/full'
 
-### `GET /api/pedidos/incremental?last_order_id={id}`
+# Buscar apenas 100 pedidos (primeira página)
+curl -X GET 'http://localhost:8000/api/pedidos/full?limit=100'
+
+# Buscar próximos 100 pedidos (continuando de onde parou)
+curl -X GET 'http://localhost:8000/api/pedidos/full?last_id=1200&limit=100'
+```
+
+**Resposta com Paginação:**
+```json
+{
+  "total": 100,
+  "gerado_em": "2025-11-22T04:12:55Z",
+  "pedidos": [...],
+  "pagination": {
+    "last_id_processed": 1200,
+    "has_more": true,
+    "total_available": null,
+    "limit": 100,
+    "last_id_requested": null
+  }
+}
+```
+
+**Como saber se há mais pedidos:**
+- Se `pagination.has_more` é `true`, há mais pedidos disponíveis
+- Use `pagination.last_id_processed` na próxima chamada com `last_id`
+
+### `GET /api/pedidos/incremental`
 
 Extrai apenas pedidos novos a partir do último ID conhecido. Ideal para uso com n8n em intervalos regulares.
 
 **Parâmetros:**
-- `last_order_id` (opcional): ID do último pedido processado. Se não fornecido, usa estado salvo em `data/last_order_state.json`.
-
-**Sobre o ID do Pedido:**
-- O ID usado é o campo `"id"` no JSON retornado (ex: `{"id": 1337, ...}`)
-- Este ID vem do checkbox `input.model-id-checkbox` ou do link `#1313` na primeira coluna da tabela
-- O sistema salva automaticamente o maior ID encontrado após cada execução bem-sucedida
-- Tanto `/full` quanto `/incremental` salvam o estado automaticamente
+- `last_order_id` (opcional): ID do último pedido processado. Se não fornecido, usa estado salvo automaticamente.
 
 **Comportamento:**
-- Se não há estado salvo, busca todos os pedidos (comportamento inicial)
-- Se há estado salvo ou `last_order_id` fornecido, busca apenas pedidos com ID maior que o último conhecido
-- Para automaticamente quando encontra um pedido com ID <= `last_order_id`
-- Salva automaticamente o maior ID encontrado após a extração
+- **Primeira vez**: Busca todos os pedidos e salva o maior ID
+- **Próximas vezes**: Busca apenas pedidos com ID > último salvo
+- Salva automaticamente o maior ID encontrado após cada execução
 
-**Resposta:** JSON apenas com pedidos novos. O JSON também é salvo automaticamente em `data/exports/pedidos_{timestamp}.json` se `EXPORT_JSON=true`.
-
-**Exemplo de uso:**
+**Exemplos:**
 ```bash
 # Primeira chamada (sem estado)
-curl 'http://localhost:8000/api/pedidos/incremental'
+curl -X GET 'http://localhost:8000/api/pedidos/incremental'
 # Retorna todos os pedidos e salva estado
 
 # Segunda chamada (com estado salvo)
-curl 'http://localhost:8000/api/pedidos/incremental'
+curl -X GET 'http://localhost:8000/api/pedidos/incremental'
 # Retorna apenas pedidos novos desde a última execução
 
 # Com last_order_id explícito
-curl 'http://localhost:8000/api/pedidos/incremental?last_order_id=100'
-# Retorna apenas pedidos com ID > 100
+curl -X GET 'http://localhost:8000/api/pedidos/incremental?last_order_id=1200'
+# Retorna apenas pedidos com ID > 1200
 ```
 
-### `GET /api/debug/html?page=1&use_playwright=false`
+**Como saber se há pedidos novos:**
+- Se `total` é 0, não há pedidos novos
+- Se a lista de `pedidos` está vazia, está tudo atualizado
 
-Endpoint de debug para inspecionar HTML retornado. Útil para ajustar seletores CSS.
+### `GET /api/debug/html`
+
+Endpoint de debug para inspecionar HTML da página de pedidos.
 
 **Parâmetros:**
-- `page`: Número da página (padrão: 1)
-- `use_playwright`: Usar Playwright ao invés de requests (padrão: false)
+- `page` (padrão: 1): Número da página a inspecionar
+- `use_playwright` (padrão: false): Usar Playwright ao invés de requests
 
-### `GET /api/debug/detailed?use_playwright=false`
+**Exemplos:**
+```bash
+# Ver HTML da primeira página (método requests)
+curl -X GET 'http://localhost:8000/api/debug/html'
+
+# Ver HTML da página 2 com Playwright
+curl -X GET 'http://localhost:8000/api/debug/html?page=2&use_playwright=true'
+```
+
+### `GET /api/debug/detailed`
 
 Endpoint de debug detalhado que retorna relatório completo incluindo steps, timings, screenshots e HTMLs salvos.
 
 **Parâmetros:**
-- `use_playwright`: Usar Playwright ao invés de requests (padrão: false)
+- `use_playwright` (padrão: false): Usar Playwright ao invés de requests
+
+**Exemplos:**
+```bash
+# Gerar relatório completo (método requests)
+curl -X GET 'http://localhost:8000/api/debug/detailed'
+
+# Gerar relatório completo com Playwright
+curl -X GET 'http://localhost:8000/api/debug/detailed?use_playwright=true'
+```
 
 **Resposta:**
 ```json

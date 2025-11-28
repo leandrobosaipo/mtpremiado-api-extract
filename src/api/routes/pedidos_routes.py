@@ -24,14 +24,88 @@ debug_router = APIRouter(prefix="/api/debug", tags=["debug"])
 @router.get(
     "/full",
     response_model=PedidosResponseSchema,
-    summary="Extrai todos os pedidos com detalhes completos",
-    description="Realiza login, extrai todos os pedidos de todas as páginas e busca detalhes completos de cada um."
+    summary="Extrai pedidos com detalhes completos",
+    description="""
+## O que faz
+Extrai todos os pedidos com todos os detalhes. Você pode pedir todos de uma vez ou usar paginação para pegar em lotes.
+
+## Quando usar
+- **Sem parâmetros**: Quando quer TODOS os pedidos de uma vez (pode demorar se houver muitos)
+- **Com `limit`**: Quando quer pegar apenas alguns pedidos por vez (ex: 100 por vez)
+- **Com `last_id` e `limit`**: Quando quer continuar de onde parou (para pegar os próximos 100 depois dos primeiros 100)
+
+## Parâmetros
+- **`last_id`** (opcional): Último ID que você já tem. Retorna apenas pedidos com ID maior que este.
+  - Exemplo: `?last_id=1200` → Retorna apenas pedidos com ID > 1200
+- **`limit`** (opcional): Quantos pedidos você quer receber.
+  - Exemplo: `?limit=100` → Retorna no máximo 100 pedidos
+  - Se não usar, retorna TODOS os pedidos
+
+## Teste Primeiro
+1. Teste sem parâmetros: `GET {{BASE_URL}}/api/pedidos/full`
+   - Deve retornar todos os pedidos
+   - Verifique se `total` mostra quantos pedidos foram encontrados
+2. Teste com limit pequeno: `GET {{BASE_URL}}/api/pedidos/full?limit=5`
+   - Deve retornar apenas 5 pedidos
+   - Verifique se `pagination` aparece na resposta
+   - Verifique se `pagination.has_more` é `true` ou `false`
+
+## Teste Depois
+1. Teste paginação completa:
+   - Primeira chamada: `GET {{BASE_URL}}/api/pedidos/full?limit=100`
+   - Anote o `pagination.last_id_processed` da resposta
+   - Segunda chamada: `GET {{BASE_URL}}/api/pedidos/full?last_id={valor_anotado}&limit=100`
+   - Deve retornar os próximos 100 pedidos
+2. Teste quando não há mais pedidos:
+   - Use um `last_id` muito alto (ex: 999999)
+   - Deve retornar lista vazia ou poucos pedidos
+   - `pagination.has_more` deve ser `false`
+
+## Como saber que terminou
+- Se `pagination.has_more` é `false`, não há mais pedidos
+- Se `total` é menor que `limit`, você chegou ao fim
+- Se a lista de `pedidos` está vazia, não há mais pedidos
+
+## Exemplos Curl
+
+```bash
+# Exemplo 1: Buscar todos os pedidos (sem paginação)
+curl -X GET '{{BASE_URL}}/api/pedidos/full'
+
+# Exemplo 2: Buscar apenas 100 pedidos (primeira página)
+curl -X GET '{{BASE_URL}}/api/pedidos/full?limit=100'
+
+# Exemplo 3: Buscar próximos 100 pedidos (continuando de onde parou)
+# Use o last_id_processed da resposta anterior
+curl -X GET '{{BASE_URL}}/api/pedidos/full?last_id=1200&limit=100'
+
+# Exemplo 4: Buscar apenas pedidos mais recentes que um ID específico
+curl -X GET '{{BASE_URL}}/api/pedidos/full?last_id=1000'
+```
+"""
 )
-async def get_pedidos_full() -> PedidosResponseSchema:
-    """Endpoint para extrair todos os pedidos com detalhes completos."""
+async def get_pedidos_full(
+    last_id: Optional[int] = Query(None, description="Último ID conhecido. Retorna apenas pedidos com ID > last_id. Exemplo: ?last_id=1200"),
+    limit: Optional[int] = Query(None, description="Limite de pedidos a retornar. Se não fornecido, retorna todos. Exemplo: ?limit=100")
+) -> PedidosResponseSchema:
+    """Endpoint para extrair pedidos com detalhes completos, com suporte a paginação."""
     try:
+        # Validação de limit se fornecido
+        if limit is not None and limit <= 0:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="O parâmetro 'limit' deve ser maior que 0"
+            )
+        
+        # Validação de last_id se fornecido
+        if last_id is not None and last_id < 0:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="O parâmetro 'last_id' deve ser maior ou igual a 0"
+            )
+        
         controller = PedidosController()
-        return await controller.extract_all_pedidos_full()
+        return await controller.extract_all_pedidos_full(last_id=last_id, limit=limit)
         
     except AuthenticationError as e:
         logger.error("api_authentication_error", detail=str(e.detail))
@@ -51,10 +125,57 @@ async def get_pedidos_full() -> PedidosResponseSchema:
     "/incremental",
     response_model=PedidosResponseSchema,
     summary="Extrai apenas pedidos novos (incremental)",
-    description="Extrai apenas pedidos com ID maior que o último processado. Ideal para uso com n8n em intervalos regulares."
+    description="""
+## O que faz
+Extrai apenas pedidos NOVOS que ainda não foram processados. Ideal para rodar de tempos em tempos (ex: a cada hora) e pegar só o que é novo.
+
+## Quando usar
+- Quando quer pegar apenas pedidos que ainda não processou
+- Para usar com automação (n8n, cron, etc) que roda de tempos em tempos
+- Quando não quer processar tudo de novo, só o que mudou
+
+## Parâmetros
+- **`last_order_id`** (opcional): ID do último pedido que você já processou.
+  - Se não fornecer, usa o último ID salvo automaticamente
+  - Exemplo: `?last_order_id=1200` → Retorna apenas pedidos com ID > 1200
+
+## Teste Primeiro
+1. Teste sem parâmetros: `GET {{BASE_URL}}/api/pedidos/incremental`
+   - Se for a primeira vez, retorna todos os pedidos
+   - Se já rodou antes, retorna apenas os novos
+   - Verifique o `total` na resposta
+2. Teste com um ID específico: `GET {{BASE_URL}}/api/pedidos/incremental?last_order_id=1300`
+   - Deve retornar apenas pedidos com ID maior que 1300
+   - Se não houver pedidos novos, retorna lista vazia
+
+## Teste Depois
+1. Teste o fluxo completo:
+   - Primeira chamada: `GET {{BASE_URL}}/api/pedidos/incremental`
+   - Anote o maior ID retornado
+   - Segunda chamada (depois de alguns minutos): `GET {{BASE_URL}}/api/pedidos/incremental`
+   - Deve retornar apenas pedidos novos desde a última chamada
+2. Teste com ID muito alto:
+   - Use `?last_order_id=999999`
+   - Deve retornar lista vazia (não há pedidos com ID maior)
+
+## Como saber que terminou
+- Se `total` é 0, não há pedidos novos
+- Se a lista de `pedidos` está vazia, está tudo atualizado
+- O sistema salva automaticamente o último ID processado
+
+## Exemplos Curl
+
+```bash
+# Exemplo 1: Buscar pedidos novos (usa último ID salvo automaticamente)
+curl -X GET '{{BASE_URL}}/api/pedidos/incremental'
+
+# Exemplo 2: Buscar pedidos novos a partir de um ID específico
+curl -X GET '{{BASE_URL}}/api/pedidos/incremental?last_order_id=1200'
+```
+"""
 )
 async def get_pedidos_incremental(
-    last_order_id: Optional[int] = Query(None, description="ID do último pedido processado. Se não fornecido, usa estado salvo.")
+    last_order_id: Optional[int] = Query(None, description="ID do último pedido processado. Se não fornecido, usa estado salvo automaticamente. Exemplo: ?last_order_id=1200")
 ) -> PedidosResponseSchema:
     """Endpoint para extrair apenas pedidos novos a partir do último ID conhecido."""
     try:
@@ -78,7 +199,58 @@ async def get_pedidos_incremental(
 @debug_router.get(
     "/html",
     summary="Endpoint de debug para inspecionar HTML da página de pedidos",
-    description="Retorna HTML da página e análise de estrutura. Disponível apenas em desenvolvimento."
+    description="""
+## O que faz
+Mostra o HTML da página de pedidos e informações sobre a estrutura. Útil para entender como a página funciona ou debugar problemas.
+
+## Quando usar
+- Quando quer ver o HTML que está sendo extraído
+- Para debugar problemas de extração
+- Para entender a estrutura da página
+
+## Parâmetros
+- **`page`** (padrão: 1): Qual página você quer ver.
+  - Exemplo: `?page=2` → Mostra HTML da página 2
+- **`use_playwright`** (padrão: false): Se deve usar Playwright ou requests.
+  - `false` (padrão): Usa método requests (mais rápido)
+  - `true`: Usa Playwright (melhor para JavaScript)
+
+## Teste Primeiro
+1. Teste básico: `GET {{BASE_URL}}/api/debug/html`
+   - Deve retornar HTML da primeira página
+   - Verifique se `html_size` mostra o tamanho
+   - Verifique se `rows_found` mostra quantos pedidos foram encontrados
+2. Teste com Playwright: `GET {{BASE_URL}}/api/debug/html?use_playwright=true`
+   - Deve usar Playwright para carregar a página
+   - Pode demorar mais, mas mostra conteúdo JavaScript
+
+## Teste Depois
+1. Teste diferentes páginas: `GET {{BASE_URL}}/api/debug/html?page=2`
+   - Deve mostrar HTML da página 2
+2. Compare métodos: Teste com e sem `use_playwright`
+   - Veja qual encontra mais pedidos (`rows_found`)
+
+## Como saber que funcionou
+- Se `html_size` é maior que 0, o HTML foi carregado
+- Se `rows_found` é maior que 0, pedidos foram encontrados
+- Se `working_selector` não está vazio, um seletor funcionou
+
+## Exemplos Curl
+
+```bash
+# Exemplo 1: Ver HTML da primeira página (método requests)
+curl -X GET '{{BASE_URL}}/api/debug/html'
+
+# Exemplo 2: Ver HTML da página 2
+curl -X GET '{{BASE_URL}}/api/debug/html?page=2'
+
+# Exemplo 3: Ver HTML usando Playwright
+curl -X GET '{{BASE_URL}}/api/debug/html?use_playwright=true'
+
+# Exemplo 4: Ver página 3 com Playwright
+curl -X GET '{{BASE_URL}}/api/debug/html?page=3&use_playwright=true'
+```
+"""
 )
 async def debug_html(page: int = 1, use_playwright: bool = False) -> Dict[str, Any]:
     """Endpoint de debug para inspecionar HTML retornado."""
@@ -193,7 +365,49 @@ async def debug_html(page: int = 1, use_playwright: bool = False) -> Dict[str, A
 @debug_router.get(
     "/detailed",
     summary="Endpoint de debug detalhado com relatório completo",
-    description="Retorna relatório completo de debug incluindo steps, timings, screenshots e HTMLs salvos."
+    description="""
+## O que faz
+Gera um relatório completo de debug com todos os detalhes: passos executados, tempo gasto, screenshots (se habilitado) e HTMLs salvos.
+
+## Quando usar
+- Quando precisa de informações detalhadas para debugar um problema
+- Para entender o que aconteceu durante a extração
+- Para ver screenshots e logs de cada passo
+
+## Parâmetros
+- **`use_playwright`** (padrão: false): Se deve usar Playwright ou requests.
+  - `false` (padrão): Usa método requests
+  - `true`: Usa Playwright (gera mais informações de debug)
+
+## Teste Primeiro
+1. Teste básico: `GET {{BASE_URL}}/api/debug/detailed`
+   - Deve retornar relatório completo
+   - Verifique se `report` contém informações
+   - Verifique se `report.steps` mostra os passos executados
+2. Teste com Playwright: `GET {{BASE_URL}}/api/debug/detailed?use_playwright=true`
+   - Deve gerar relatório mais completo
+   - Pode incluir screenshots se configurado
+
+## Teste Depois
+1. Compare os dois métodos (com e sem Playwright)
+   - Veja qual gera mais informações
+   - Verifique timings para ver qual é mais rápido
+
+## Como saber que funcionou
+- Se `report` não está vazio, o relatório foi gerado
+- Se `report.steps` tem itens, os passos foram registrados
+- Se `report.timings` tem dados, os tempos foram medidos
+
+## Exemplos Curl
+
+```bash
+# Exemplo 1: Gerar relatório completo (método requests)
+curl -X GET '{{BASE_URL}}/api/debug/detailed'
+
+# Exemplo 2: Gerar relatório completo com Playwright
+curl -X GET '{{BASE_URL}}/api/debug/detailed?use_playwright=true'
+```
+"""
 )
 async def debug_detailed(use_playwright: bool = False) -> Dict[str, Any]:
     """Endpoint de debug detalhado que retorna relatório completo."""

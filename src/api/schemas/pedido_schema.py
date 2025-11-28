@@ -5,6 +5,16 @@ from pydantic import BaseModel, Field
 from datetime import datetime
 
 
+class PaginationMetadata(BaseModel):
+    """Metadados de paginação para respostas paginadas."""
+    
+    last_id_processed: Optional[int] = Field(None, description="Último ID processado nesta requisição")
+    has_more: bool = Field(..., description="Se há mais pedidos disponíveis")
+    total_available: Optional[int] = Field(None, description="Total de pedidos disponíveis (se conhecido)")
+    limit: int = Field(..., description="Limite de pedidos solicitado")
+    last_id_requested: Optional[int] = Field(None, description="Último ID usado na requisição")
+
+
 class PedidoDetalhesSchema(BaseModel):
     """Schema para detalhes de um pedido."""
     
@@ -63,35 +73,83 @@ class PedidosResponseSchema(BaseModel):
     gerado_em: str = Field(..., description="Data e hora da geração em ISO 8601")
     pedidos: list[PedidoDetalhesSchema] = Field(..., description="Lista de pedidos")
     
+    # Campos de paginação (opcionais para manter compatibilidade)
+    pagination: Optional[PaginationMetadata] = Field(None, description="Metadados de paginação (apenas quando paginação é usada)")
+    
     class Config:
         json_schema_extra = {
-            "example": {
-                "total": 1306,
-                "gerado_em": "2025-11-22T04:12:55Z",
-                "pedidos": [
-                    {
-                        "id": 1308,
-                        "criado": "1 hora atrás",
-                        "status": "Aprovado",
-                        "sorteio": "BIZ 0KM",
-                        "bilhetes_totais_sorteio": "10000000 bilhetes",
-                        "cliente": "Nome",
-                        "telefone": "+55 66 99999-9999",
-                        "qtd_bilhetes": "100 bilhetes",
-                        "valor": "R$ 10,00",
-                        "detalhes_url": "https://omtpremiado.com.br/pedidos/1308",
-                        "detalhe_data_hora": "21/11/2025 21:15:25",
-                        "detalhe_email": "[email protected]",
-                        "detalhe_telefone": "+55 66 99999-9999",
-                        "detalhe_cpf": "026.750.491-82",
-                        "detalhe_nascimento": "24/07/1994",
-                        "detalhe_data_compra": "21/11/2025",
-                        "detalhe_pagamento_id": "ABC123",
-                        "detalhe_subtotal": "R$ 0,10",
-                        "detalhe_descontos": "R$ 0,00",
-                        "detalhe_total": "R$ 0,10"
+            "examples": [
+                {
+                    "summary": "Resposta sem paginação (comportamento padrão)",
+                    "description": "Quando não usa parâmetros de paginação, retorna todos os pedidos",
+                    "value": {
+                        "total": 1306,
+                        "gerado_em": "2025-11-22T04:12:55Z",
+                        "pedidos": [
+                            {
+                                "id": 1308,
+                                "criado": "1 hora atrás",
+                                "status": "Aprovado",
+                                "sorteio": "BIZ 0KM",
+                                "bilhetes_totais_sorteio": "10000000 bilhetes",
+                                "cliente": "Nome",
+                                "telefone": "+55 66 99999-9999",
+                                "qtd_bilhetes": "100 bilhetes",
+                                "valor": "R$ 10,00",
+                                "detalhes_url": "https://omtpremiado.com.br/pedidos/1308",
+                                "detalhe_data_hora": "21/11/2025 21:15:25",
+                                "detalhe_email": "[email protected]",
+                                "detalhe_telefone": "+55 66 99999-9999",
+                                "detalhe_cpf": "026.750.491-82",
+                                "detalhe_nascimento": "24/07/1994",
+                                "detalhe_data_compra": "21/11/2025",
+                                "detalhe_pagamento_id": "ABC123",
+                                "detalhe_subtotal": "R$ 0,10",
+                                "detalhe_descontos": "R$ 0,00",
+                                "detalhe_total": "R$ 0,10"
+                            }
+                        ]
                     }
-                ]
-            }
+                },
+                {
+                    "summary": "Resposta com paginação",
+                    "description": "Quando usa parâmetros limit e last_id, inclui metadados de paginação",
+                    "value": {
+                        "total": 100,
+                        "gerado_em": "2025-11-22T04:12:55Z",
+                        "pedidos": [
+                            {
+                                "id": 1308,
+                                "criado": "1 hora atrás",
+                                "status": "Aprovado",
+                                "sorteio": "BIZ 0KM",
+                                "bilhetes_totais_sorteio": "10000000 bilhetes",
+                                "cliente": "Nome",
+                                "telefone": "+55 66 99999-9999",
+                                "qtd_bilhetes": "100 bilhetes",
+                                "valor": "R$ 10,00",
+                                "detalhes_url": "https://omtpremiado.com.br/pedidos/1308",
+                                "detalhe_data_hora": "21/11/2025 21:15:25",
+                                "detalhe_email": "[email protected]",
+                                "detalhe_telefone": "+55 66 99999-9999",
+                                "detalhe_cpf": "026.750.491-82",
+                                "detalhe_nascimento": "24/07/1994",
+                                "detalhe_data_compra": "21/11/2025",
+                                "detalhe_pagamento_id": "ABC123",
+                                "detalhe_subtotal": "R$ 0,10",
+                                "detalhe_descontos": "R$ 0,00",
+                                "detalhe_total": "R$ 0,10"
+                            }
+                        ],
+                        "pagination": {
+                            "last_id_processed": 1200,
+                            "has_more": True,
+                            "total_available": None,
+                            "limit": 100,
+                            "last_id_requested": None
+                        }
+                    }
+                }
+            ]
         }
 
