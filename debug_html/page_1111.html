@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://omtpremiado.com.br/dash/css/dashlite.min.css">
+    <link rel="stylesheet" type="text/css" href="https://omtpremiado.com.br/dash/css/flatpickr-dark.css">
+    <link rel="preload" as="style" href="https://omtpremiado.com.br/build/assets/app.bc738419.css" /><link rel="modulepreload" href="https://omtpremiado.com.br/build/assets/app.68c3ea04.js" /><link rel="modulepreload" href="https://omtpremiado.com.br/build/assets/clipboard.286a0410.js" /><link rel="modulepreload" href="https://omtpremiado.com.br/build/assets/index.03bb1a20.js" /><link rel="modulepreload" href="https://omtpremiado.com.br/build/assets/module.esm.adc3d5c0.js" /><link rel="stylesheet" href="https://omtpremiado.com.br/build/assets/app.bc738419.css" /><script type="module" src="https://omtpremiado.com.br/build/assets/app.68c3ea04.js"></script>    <style >[wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {display:none;}[wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {animation-duration: 50000s;animation-name: livewireautofill;}@keyframes livewireautofill { from {} }</style>
+    <title>MT Premiado</title>
+        <meta property="custom_whatsapp_message" content=""/>
+</head>
+<body class="nk-body dark-mode">
+        <div class="nk-app-root">
+        <div class="nk-main ">
+            <div class="nk-sidebar nk-sidebar-fixed is-dark" id="sidebar" data-content="sidebarMenu">
+    <div class="nk-sidebar-element nk-sidebar-head">
+        <div class="nk-sidebar-brand">
+            <a href="/dashboard" class="logo-link nk-sidebar-logo">
+                                    <img class="logo-light logo-img" src="/storage/images/L8FzeAGQfOeJs3EQQEME6srhd4Yncdq0v2b7oByt.jpg" srcset="/storage/images/L8FzeAGQfOeJs3EQQEME6srhd4Yncdq0v2b7oByt.jpg 2x" alt="logo-dark">
+                            </a>
+        </div>
+        <div class="nk-menu-trigger mr-n2">
+            <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu">
+                <em class="icon ni ni-arrow-left"></em>
+            </a>
+            <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu">
+                <em class="icon ni ni-menu"></em>
+            </a>
+        </div>
+    </div>
+    <div class="nk-sidebar-element">
+        <div class="nk-sidebar-content">
+            <div class="nk-sidebar-menu" data-simplebar>
+                <ul class="nk-menu">
+
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">Dashboards</h6>
+                    </li>
+
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/vendas" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-cart-fill"></em>
+                            </span>
+                                <span class="nk-menu-text">Vendas</span>
+                            </a>
+                        </li>
+                    
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/metricas" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-activity-round-fill"></em>
+                            </span>
+                                <span class="nk-menu-text">Métricas</span>
+                            </a>
+                        </li>
+                    
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">Recursos</h6>
+                    </li>
+
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/sorteios" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-coins"></em>
+                            </span>
+                                <span class="nk-menu-text">Sorteios</span>
+                            </a>
+                        </li>
+                    
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/pedidos" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-cc-alt2-fill"></em>
+                            </span>
+                                <span class="nk-menu-text">Pedidos</span>
+                            </a>
+                        </li>
+                    
+
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/gestao_master" class="nk-menu-link">
+                                    <span class="nk-menu-icon">
+                                        <em class="icon ni ni-account-setting"></em>
+                                    </span>
+                                <span class="nk-menu-text">Gestão Master</span>
+                            </a>
+                        </li>
+                    
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/ranking" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-growth-fill"></em>
+                            </span>
+                                <span class="nk-menu-text">Ranking</span>
+                            </a>
+                        </li>
+                    
+
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/usuarios" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-users-fill"></em>
+                            </span>
+                                <span class="nk-menu-text">Usuarios</span>
+                            </a>
+                        </li>
+                    
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/afiliacoes" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-network"></em>
+                            </span>
+                                <span class="nk-menu-text">Afiliações</span>
+                            </a>
+                        </li>
+                    
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/banners" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-view-grid3-wd"></em>
+                            </span>
+                                <span class="nk-menu-text">Banners</span>
+                            </a>
+                        </li>
+                    
+                    
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/bilhetes-premiados" class="nk-menu-link">                                <span class="nk-menu-icon">
+                                    <em class="icon ni ni-ticket"></em>
+                                </span>
+                                <span class="nk-menu-text">Bilhetes premiados</span>
+                            </a>
+                        </li>
+                    
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/caixinha-premiada" class="nk-menu-link">
+                                <span class="nk-menu-icon">
+                                     <em class="icon ni ni-puzzle"></em>
+                                </span>
+                                <span class="nk-menu-text">Jogos da sorte</span>
+                            </a>
+                        </li>
+                    
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/hora-premiada" class="nk-menu-link">                                <span class="nk-menu-icon">
+                                    <em class="icon ni ni-clock"></em>
+                                </span>
+                                <span class="nk-menu-text">Hora premiada</span>
+                            </a>
+                        </li>
+                    
+                                        <li class="nk-menu-item">
+                        <a href="https://omtpremiado.com.br/dashboard/chance-em-dobro" class="nk-menu-link">  <span class="nk-menu-icon">
+                                    <em class="icon ni ni-ticket-plus"></em>
+                                </span>
+                            <span class="nk-menu-text">Chance em dobro</span>
+                        </a>
+                    </li>
+                    
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/cliente" class="nk-menu-link">
+                                    <span class="nk-menu-icon">
+                                        <em class="icon ni ni-user-list-fill"></em>
+                                    </span>
+                                <span class="nk-menu-text">Clientes</span>
+                            </a>
+                        </li>
+                    
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">Ferramentas</h6>
+                    </li>
+
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/webpush" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-signal"></em>
+                            </span>
+                                <span class="nk-menu-text">
+                                Webpush
+                            </span>
+                            </a>
+                        </li>
+                    
+                                            <li class="nk-menu-item">
+                            <a href="#" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-calc"></em>
+                            </span>
+                                <span id="calculator" class="nk-menu-text">
+                                    Calculadora
+                                </span>
+                                <button type="button" data-toggle="modal" data-target="#calculatorModal" id="open-calculate-modal" style="display: none">
+                                    
+                                </button>
+                            </a>
+                        </li>
+                    
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">Ajuda</h6>
+                    </li>
+
+                                            <li class="nk-menu-item">
+                            <a href="https://omtpremiado.com.br/dashboard/perguntas_frequentes" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-question"></em>
+                            </span>
+                                <span id="faq" class="nk-menu-text">
+                                    Perguntas Frequentes
+                                </span>
+                            </a>
+                        </li>
+                    
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">Plataforma</h6>
+                    </li>
+
+                                            <li class="nk-menu-item has-sub">
+                            <a href="#" class="nk-menu-link nk-menu-toggle">
+                                <span class="nk-menu-icon">
+                                    <em class="icon ni ni-setting-alt"></em>
+                                </span>
+                                <span class="nk-menu-text">Configurações</span>
+                            </a>
+                            <ul class="nk-menu-sub">
+
+                                                                    <li class="nk-menu-item">
+                                        <a href="https://omtpremiado.com.br/dashboard/configuracoes/geral" class="nk-menu-link">
+                                            <span class="nk-menu-text">Gerais</span>
+                                        </a>
+                                    </li>
+                                
+                                
+                                                                    <li class="nk-menu-item">
+                                        <a href="https://omtpremiado.com.br/dashboard/configuracoes/informacoes-de-contato" class="nk-menu-link">
+                                            <span class="nk-menu-text">Contato</span>
+                                        </a>
+                                    </li>
+                                
+
+                                
+                                
+                                
+                                
+                                                                                            </ul>
+                        </li>
+                    
+                                    </ul>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="nk-wrap ">
+                <div class="nk-header nk-header-fixed is-light">
+    <div class="container-fluid">
+        <div class="nk-header-wrap">
+            <div class="nk-menu-trigger d-xl-none ml-n1">
+                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu">
+                    <em class="icon ni ni-menu"></em>
+                </a>
+            </div>
+            <div class="nk-header-brand d-xl-none">
+                <a href="#" class="logo-link">
+                    <img class="logo-dark logo-img" src="https://omtpremiado.com.br/images/logo.png"
+                        srcset="https://omtpremiado.com.br/images/logo.png 2x" alt="logo-dark">
+                </a>
+            </div>
+
+            <a class="d-none d-md-block" href="https://omtpremiado.com.br">Ir para o app</a>
+
+            <div class="nk-header-tools">
+                <ul class="nk-quick-nav">
+                                        <li id="sensitive-data-trigger" data-is-hidden="0" class="dropdown chats-dropdown hide-mb-xs">
+                        <a href="#" class="dropdown-toggle nk-quick-nav-icon">
+                            <div class="icon-status icon-status-na">
+                                <em class="icon ni ni-eye open-eye"></em>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- TODO: remove to not fire bell events -->
+                    <div wire:id="wk17KHESYmwcQeCJqAYf" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;wk17KHESYmwcQeCJqAYf&quot;,&quot;name&quot;:&quot;dashboard.notification.bell&quot;,&quot;locale&quot;:&quot;pt-BR&quot;,&quot;path&quot;:&quot;dashboard\/pedidos&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;a0cbc28f&quot;,&quot;data&quot;:{&quot;maintenanceMode&quot;:false},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;f609b8f7e95e0135b9907b65ddb5a9b956a821406aab4bdbe916c3571582e3a5&quot;}}">
+    <div>
+        <a                wire:poll.3000ms
+                      wire:click="markAsRead"
+           href="#"
+           data-target="#notifications-modal"
+           class="nk-quick-nav-icon "
+           data-toggle="modal">
+            <em id="bell-notification-icon" class="icon ni ni-bell"></em>
+        </a>
+    </div>
+</div>
+
+<!-- Livewire Component wire-end:wk17KHESYmwcQeCJqAYf -->                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle mr-n1" data-toggle="dropdown">
+                            <div class="user-toggle">
+
+                                <div class="user-avatar" style="border-radius: 50%; width: 50px; height: 50px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                                                                            <span style="color: #fff; font-weight: bold; font-size: 18px; text-transform: uppercase;">O</span>
+                                                                    </div>
+
+
+                                <div class="user-info d-none d-xl-block">
+                                    <div class="user-status">
+                                                                                Proprietário
+                                                                            </div>
+                                    <div class="user-name dropdown-indicator">
+                                        omtpremiado
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                <div class="user-card">
+                                    <div class="user-avatar">
+                                                                                <span>O</span>
+                                                                            </div>
+                                    <div class="user-info">
+                                        omtpremiado
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    <li>
+                                        <a href="https://omtpremiado.com.br/dashboard/perfil?user=6"><em class="icon ni ni-user-alt"></em>
+                                            <span>Editar Perfil</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="https://omtpremiado.com.br/dashboard/carteira">
+                                            <em class="icon ni ni-wallet-alt"></em>
+                                            <span>Carteira •<small> <span>R$</span> 8.573,15</small></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+
+                                    <li>
+                                        <form method="POST" action="https://omtpremiado.com.br/logout">
+                                            <input type="hidden" name="_token" value="B1dtbIpg7EnlGzBqqIax1Tviy1GDMNny8uEgYN5o">                                            <a onclick="event.preventDefault();
+                                                this.closest('form').submit();" href="#">
+                                                <em class="icon ni ni-signout"></em>
+                                                <span>Sair</span>
+                                            </a>
+                                        </form>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+                <div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title d-flex align-items-center gap-2">Pedidos <div>
+            <span class="d-none d-md-inline">
+            <a href="https://youtu.be/X4FDdMMx754" target="_blank">
+                <span class="badge bg-primary rounded-pill" style="display: flex; cursor: pointer; align-items: center; margin-left: 8px; font-size: 12px;">
+                    <em class="icon ni ni-play"></em>
+                    <span style="margin-left: -4px;">Tutorial</span>
+                </span>
+            </a>
+        </span>
+    
+            <span class="d-md-none">
+            <a href="https://youtu.be/X4FDdMMx754" target="_blank">
+                <span class="badge bg-primary rounded-pill" style="display: flex; cursor: pointer; align-items: center; margin-left: 8px; font-size: 12px;">
+                    <em class="icon ni ni-play"></em>
+                    <span style="margin-left: -4px;">Tutorial</span>
+                </span>
+            </a>
+        </span>
+    </div>
+
+  </h3>
+                                        </div>
+                                        <div class="nk-block-head-content">
+
+
+                                            <ul class="nk-block-tools g-3">
+
+                                                                                                    <li class="nk-block-tools-opt d-block">
+                                                        <a href="#" data-target="#newfiltersModal" data-toggle="modal" class="btn btn-icon btn-secondary">
+                                                            <em class="icon ni ni-filter"></em>
+                                                        </a>
+                                                    </li>
+                                                
+                                                                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nk-block">
+                                    <div class="card card-stretch">
+                                        <div class="card-inner-group">
+                                            <div class="card-inner">
+                                                
+                                                                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h5 class="title">Seus pedidos</h5>
+                                                    </div>
+                                                    <div class="card-tools mr-n1">
+                                                        <ul class="btn-toolbar gx-1">
+                                                            <li>
+                                                                <div class="dropdown">
+                                                                    <a href="#" class="btn btn-trigger btn-icon dropdown-toggle" data-toggle="dropdown">
+                                                                        <em class="icon ni ni-filter-alt"></em>
+                                                                    </a>
+                                                                    <div style="min-width: 450px" class="filter-wg dropdown-menu dropdown-menu-xl dropdown-menu-right">
+                                                                        <div class="dropdown-head">
+                                                                            <span class="sub-title dropdown-title">Filtros</span>
+                                                                            <div class="dropdown">
+                                                                                <a href="#" class="link link-light">
+                                                                                    <em class="icon ni ni-more-h"></em>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="dropdown-body dropdown-body-rg">
+                                                                            <form action="https://omtpremiado.com.br/dashboard/pedidos">
+                                                                                <div class="row gx-6 gy-4">
+                                                                                    <div class="col-6">
+                                                                                        <div class="form-group">
+                                                                                            <label for="raffle-filter" class="overline-title overline-title-alt">
+                                                                                                Sorteio
+                                                                                            </label>
+                                                                                            <select id="raffle-filter" name="raffle" data-search="on" class="form-select form-select-sm">
+                                                                                                <option value="all">Todos</option>
+                                                                                                                                                                                                    <option  value="2">
+                                                                                                        #2 BIZ 0KM
+                                                                                                    </option>
+                                                                                                                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <div class="form-group">
+                                                                                            <label for="status-filter" class="overline-title overline-title-alt">Status</label>
+                                                                                            <select id="status-filter" name="status" class="form-select form-select-sm">
+                                                                                                <option value="all">Todos</option>
+                                                                                                <option                                                                                                 value="approved">
+                                                                                                    Aprovado
+                                                                                                </option>
+                                                                                                <option                                                                                                 value="suspended">
+                                                                                                    Pendente
+                                                                                                </option>
+                                                                                                <option                                                                                                 value="canceled">
+                                                                                                    Cancelado
+                                                                                                </option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                                                                                                            <div class="col-12">
+                                                                                            <div class="row" x-data="{ data : '', type_field: '' }">
+                                                                                                <div class="col-4">
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="field" class="overline-title overline-title-alt">Campo</label>
+                                                                                                        <select name="field" id="field" class="form-select form-select-sm" x-model="type_field">
+                                                                                                            <option value="client_name">Cliente</option>
+                                                                                                            <option value="client_phone">Telefone</option>
+                                                                                                            <option value="client_email">E-mail</option>
+                                                                                                            <option value="client_cpf">CPF</option>
+                                                                                                            <option value="tickets">Bilhetes</option>
+                                                                                                            <option value="order_id">ID do pedido</option>
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-4">
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="operator" class="overline-title overline-title-alt">Operação</label>
+                                                                                                        <select name="operator" id="operator" class="form-select form-select-sm">
+                                                                                                            <option value="=">é igual</option>
+                                                                                                            <option value="LIKE">contém</option>
+                                                                                                            <option value="!=">é diferente</option>
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-4">
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="value" class="overline-title overline-title-alt">Valor</label>
+                                                                                                        <input
+                                                                                                            class="form-control"
+                                                                                                            x-mask:dynamic="type_field == 'client_cpf' ? '999.999.999-99' : ''"
+                                                                                                            autocomplete="off"
+                                                                                                            id="value"
+                                                                                                            name="value"
+                                                                                                            type="text">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    
+                                                                                    <div class="col-12">
+                                                                                        <div class="form-group">
+                                                                                            <button type="submit" class="btn btn-secondary">Filtrar</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <div class="dropdown-foot between">
+                                                                            <a class="clickable" href="https://omtpremiado.com.br/dashboard/pedidos">
+                                                                                Resetar Filtros
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="dropdown">
+                                                                    <a href="#" class="btn btn-trigger btn-icon dropdown-toggle" data-toggle="dropdown">
+                                                                        <em class="icon ni ni-setting"></em>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-xs dropdown-menu-right">
+                                                                        <ul class="link-check">
+                                                                            <li>
+                                                                                <span>Mostrar</span>
+                                                                            </li>
+                                                                            <li  class="active" >
+                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=1111&amp;perPage=15">15</a>
+                                                                            </li>
+                                                                            <li >
+                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=1111&amp;perPage=25">25</a>
+                                                                            </li>
+                                                                            <li >
+                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=1111&amp;perPage=40">40</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <ul class="link-check">
+                                                                            <li>
+                                                                                <span>Ordem</span>
+                                                                            </li>
+                                                                            <li  class="active"  >
+                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=1111&amp;order=desc">DESC</a>
+                                                                            </li>
+                                                                            <li >
+                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=1111&amp;order=asc">ASC</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-inner p-0">
+                                                <div class="nk-tb-list nk-tb-tnx">
+                                                    <div class="nk-tb-item nk-tb-head">
+                                                        <div class="nk-tb-col nk-tb-col-check">
+                                                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                                                <input type="checkbox" class="custom-control-input" id="pid-all-models">
+                                                                <label class="custom-control-label" for="pid-all-models"></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span>#</span>
+                                                        </div>
+                                                        <div class="nk-tb-col tb-col-md">
+                                                            <span>Criado há</span>
+                                                        </div>
+                                                        <div class="nk-tb-col tb-col-xl">
+                                                            <span>Status</span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span>Sorteio</span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span>Cliente</span>
+                                                        </div>
+                                                        <div class="nk-tb-col tb-col-md">
+                                                            <span>Comprou</span>
+                                                        </div>
+                                                        <div class="nk-tb-col tb-col-sm">
+                                                            <span>Valor</span>
+                                                        </div>
+                                                        <div class="nk-tb-col nk-tb-col-tools">
+                                                                                                                        <ul class="nk-tb-actions gx-1 my-n1">
+                                                                <li>
+                                                                    <div class="drodown">
+                                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger mr-n1" data-toggle="dropdown">
+                                                                            <em class="icon ni ni-more-h"></em>
+                                                                        </a>
+                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                            <ul class="link-list-opt no-bdr">
+                                                                                
+
+                                                                                
+                                                                                
+                                                                                                                                                                    <li>
+                                                                                        <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                                                                                            <input type="hidden" name="_token" value="B1dtbIpg7EnlGzBqqIax1Tviy1GDMNny8uEgYN5o">                                                                                            <input type="hidden" class="ids-input" name="ids" value="">
+                                                                                            <a class="change-order-status-btn" href="#">
+                                                                                                <em class="icon ni ni-na"></em>
+                                                                                                <span>Suspender</span>
+                                                                                            </a>
+                                                                                        </form>
+                                                                                    </li>
+                                                                                                                                                                                                                                                                                                                                    <li id="delete-models-btn">
+                                                                                        <a href="#">
+                                                                                            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                                                                                                <input type="hidden" name="_token" value="B1dtbIpg7EnlGzBqqIax1Tviy1GDMNny8uEgYN5o">                                                                                                <input type="hidden" name="_method" value="delete">                                                                                                <input type="hidden" name="ids" value="">
+                                                                                            </form>
+                                                                                            <em class="icon ni ni-trash"></em>
+                                                                                            <span>Remover</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                                                                                    </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <nav role="navigation" style="display: none" aria-label="Pagination Navigation" class="">
+        <div class="flex justify-between flex-1 sm:hidden">
+                            <a href="https://omtpremiado.com.br/dashboard/pedidos?page=1110" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                    pagination.previous
+                </a>
+            
+                            <span class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
+                    pagination.next
+                </span>
+                    </div>
+
+        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+            <div>
+                <p class="text-sm text-gray-700 leading-5">
+                    Showing
+                                            0
+                                        of
+                    <span class="font-medium">1308</span>
+                    results
+                </p>
+            </div>
+
+            <div>
+                <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                    
+                                            <a href="https://omtpremiado.com.br/dashboard/pedidos?page=1110" rel="prev" class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150" aria-label="pagination.previous">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    
+                    
+                                            
+                        
+                        
+                                                                                                                        <a href="https://omtpremiado.com.br/dashboard/pedidos?page=1" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 1">
+                                        1
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=2" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 2">
+                                        2
+                                    </a>
+                                                                                                                                
+                                                    <span aria-disabled="true">
+                                <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 cursor-default leading-5">...</span>
+                            </span>
+                        
+                        
+                                                                    
+                        
+                        
+                                                                                                                        <a href="https://omtpremiado.com.br/dashboard/pedidos?page=79" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 79">
+                                        79
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=80" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 80">
+                                        80
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=81" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 81">
+                                        81
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=82" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 82">
+                                        82
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=83" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 83">
+                                        83
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=84" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 84">
+                                        84
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=85" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 85">
+                                        85
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=86" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 86">
+                                        86
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=87" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 87">
+                                        87
+                                    </a>
+                                                                                                                                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=88" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 88">
+                                        88
+                                    </a>
+                                                                                                        
+                    
+                                            <span aria-disabled="true" aria-label="pagination.next">
+                            <span class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-r-md leading-5" aria-hidden="true">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </span>
+                                    </span>
+            </div>
+        </div>
+    </nav>
+    <div class="card mt-3">
+        <div class="card-inner">
+            <div class="nk-block-between-md g-3">
+                <div class="g">
+                    <ul class="pagination justify-content-center justify-content-md-start">
+                                                    <li class="page-item">
+                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=1110">Voltar</a>
+                            </li>
+                        
+                        
+                            
+
+                                                                                                                                                    <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=1">1</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=2">2</a>
+                                            </li>
+                                                                                                            
+                        
+                                                            <li class="page-item">
+                                    <a class="page-link">...</a>
+                                </li>
+                            
+
+                            
+                        
+                            
+
+                                                                                                                                                    <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=79">79</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=80">80</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=81">81</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=82">82</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=83">83</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=84">84</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=85">85</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=86">86</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=87">87</a>
+                                            </li>
+                                                                                                                                                                <li class="page-item">
+                                                <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=88">88</a>
+                                            </li>
+                                                                                                            
+                        
+                                                    <li class="page-item">
+                                <a class="page-link">Próxima</a>
+                            </li>
+                                            </ul>
+                </div>
+
+                <div class="g">
+                    <div class="pagination-goto d-flex justify-content-center justify-content-md-start gx-3">
+                        <div>
+                            Página 1111 de 88
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" tabindex="-1" id="wppModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <a href="#" class="close" data-dismiss="modal"
+                               aria-label="Close">
+                                <em class="icon ni ni-cross"></em>
+                            </a>
+                            <div class="modal-header">
+                                <h5 class="modal-title">Mensagem do Whatsapp</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Para compor a mensagem, você pode usar os dados do pedido, use exatamente um dos valores abaixo para fazer a interpolação de valores</p>
+                                <ul class="list">
+
+                                    <li class="list-item">@nome_cliente</li>
+                                    <li class="list-item">@email_cliente</li>
+                                    <li class="list-item">@telefone_cliente</li>
+                                    <li class="list-item">@titulo_rifa</li>
+                                    <li class="list-item">@pedido_bilhetes</li>
+                                    <li class="list-item">@pedido_valor</li>
+                                    <li class="list-item">@pedido_qtd_bilhetes</li>
+                                    <li class="list-item">@pedido_status</li>
+                                    <li class="list-item">@pedido_valido_ate</li>
+
+                                </ul>
+                                <form action="https://omtpremiado.com.br/dashboard/whatsapp-mensagem" method="POST">
+                                    <input type="hidden" name="_token" value="B1dtbIpg7EnlGzBqqIax1Tviy1GDMNny8uEgYN5o">                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between">
+                                            <label class="form-label" for="whatsapp-message">Mensagem</label>
+
+                                            <div>
+                                                <span class="badge badge-dot bg-info"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-wrap">
+                                            <textarea class="form-control" id="whatsapp-message" name="whatsappmsg"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" id="wpp_order_id" name="wpp_order_id">
+
+                                    <button type="submit" id="send-whatsapp-message-btn" class="btn btn-primary">Enviar Mensagem</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer bg-light">
+                                <span class="sub-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" tabindex="-1" id="newfiltersModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <a href="#" class="close" data-dismiss="modal"
+                               aria-label="Close">
+                                <em class="icon ni ni-cross"></em>
+                            </a>
+                            <div class="modal-header">
+                                <h5 class="modal-title">Filtros especiais</h5>
+                            </div>
+                            <div class="modal-body">
+
+                                <form action="https://omtpremiado.com.br/dashboard/pedidos">
+                                    <div class="row gx-6 gy-4">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="raffle-filter" class="overline-title overline-title-alt">
+                                                    Sorteio
+                                                </label>
+                                                <select id="raffle-filter" name="raffle" data-search="on" class="form-select form-select-sm">
+                                                                                                            <option  value="2">
+                                                            #2 BIZ 0KM
+                                                        </option>
+                                                                                                    </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="special_filter" class="overline-title overline-title-alt">
+                                                    Filtro especial
+                                                </label>
+                                                <select id="special_filter" name="special_filter" class="form-select form-select-sm">
+                                                    <option value="smallest-ticket">Menor bilhete comprado</option>
+                                                    <option value="largest-ticket">Maior bilhete comprado</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                                    <div class="form-group">
+                                                        <label for="date_range_from" class="form-label">
+                                                            De
+                                                        </label>
+                                                        <div class="form-control-wrap">
+
+                                                            <input
+                                                                type="text"
+                                                                id="date_range_from"
+                                                                name="date_range_from"
+                                                                class="form-control date-with-time-mask">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="date_range_to" class="form-label">
+                                                            Até
+                                                        </label>
+                                                        <div class="form-control-wrap">
+                                                            <input
+                                                                id="date_range_from"
+                                                                name="date_range_to"
+                                                                type="text"
+                                                                class="form-control date-with-time-mask">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-secondary">Filtrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" tabindex="-1" id="createOrder">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <a href="#" class="close" data-dismiss="modal"
+                               aria-label="Close">
+                                <em class="icon ni ni-cross"></em>
+                            </a>
+                            <div class="modal-header">
+                                <h5 class="modal-title">Novo pedido</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Preencha os campos abaixo.</p>
+
+                                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/criar">
+                                    <input type="hidden" name="_token" value="B1dtbIpg7EnlGzBqqIax1Tviy1GDMNny8uEgYN5o">                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="raffle" class="form-label">Sorteio</label>
+                                                <div class="form-control-wrap">
+                                                    <select id="raffle" data-search="on" name="raffle" class="form-select js-select2">
+                                                                                                                    <option value="2">
+                                                                #2 - BIZ 0KM
+                                                            </option>
+                                                                                                            </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group d-none hidden-order-field">
+                                                <label class="form-label" for="customer_name">Nome do cliente</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" required class="form-control" name="customer_name" id="customer_name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="customer_email">E-mail do cliente</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="email" required class="form-control" name="customer_email" id="customer_email">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2 mt-2">
+                                                    <button type="button" id="search-customer-by-email-trigguer" style="margin-top: 19px" class="btn btn-primary">
+                                                        <em class="icon ni ni-search"></em>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="alert alert-warning mt-3 hidden" id="email-warning-message">
+                                            Por favor, clique no botão de pesquisa após preencher o e-mail.
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group d-none hidden-order-field">
+                                                <label class="form-label" for="customer_phone">Telefone do cliente</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" required class="form-control whatsapp" name="customer_phone" id="customer_phone">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group d-none hidden-order-field">
+                                                <label class="form-label" for="customer_cpf">CPF do cliente</label>
+                                                <div class="form-control-wrap">
+                                                    <input type="text" required class="form-control cpf" name="customer_cpf" id="customer_cpf">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="modality_panel" class="form-label">
+                                                Fazer compra na modalidade:
+                                            </label><br>
+                                            <div class="custom-control custom-radio me-3 mb-2">
+                                                <input
+                                                    type="radio"
+                                                    value="panel"
+                                                    id="modality_panel"
+                                                    checked
+                                                    name="modality"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="modality_panel">Painel</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    value="random"
+                                                    id="modality_rand"
+                                                    name="modality"
+                                                    class="custom-control-input">
+                                                <label class="custom-control-label" for="modality_rand">Randomica</label>
+                                            </div>
+                                        </div>
+
+                                        <div id="tickets_text_area_wrapper" class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="tickets">Bilhetes (<small>Separado por virgula</small>)</label>
+                                                <div class="form-control-wrap">
+                                                    <textarea class="form-control no-resize" name="tickets" id="tickets"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="tickets_count_area_wrapper" class="col-12 d-none">
+                                            <div class="form-group">
+                                                <label for="tickets_amount" class="form-label">Quantidade de bilhetes</label>
+                                                <div class="form-control-wrap number-spinner-wrap">
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-icon btn-outline-light number-spinner-btn number-minus"
+                                                        data-number="minus"><em class="icon ni ni-minus"></em>
+                                                    </button>
+                                                    <input
+                                                        type="number"
+                                                        name="tickets_amount"
+                                                        id="tickets_amount"
+                                                        value="1"
+                                                        class="form-control number-spinner"
+                                                        min="1">
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-icon btn-outline-light number-spinner-btn number-plus"
+                                                        data-number="plus"><em class="icon ni ni-plus"></em>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button class="btn btn-primary">
+                                                <em class="icon ni ni-plus"></em>
+                                                <span>Criar pedido</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer bg-light">
+                                <span class="sub-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nk-footer">
+    <div class="container-fluid">
+        <div class="nk-footer-wrap">
+            <div class="nk-footer-copyright">
+                &copy; 2025 MT Premiado. Todos os direitos reservados.
+            </div>
+            <div class="nk-footer-links">
+                <ul class="nav nav-sm">
+                    <li class="nav-item">
+                        <a>
+                            
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="calculatorModal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-header">
+                <h5 class="modal-title">Calculadora</h5>
+            </div>
+            <div class="modal-body-sm">
+                <div class="card-inner">
+                    <span class="preview-title-lg overline-title"></span>
+                    <div class="preview-block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-5 mb-5">
+                                    <label class="form-label" for="ticket_range_numbers">Quantidade de Bilhetes : </label>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-control-wrap">
+                                        <div class="form-control-select" x-data="{ ticketRange : getFullTicketRange() }">
+                                            <select name="ticket_range_numbers" id="ticket_range_numbers" @input="$dispatch('sendCalcValue',{ quantityTickets: $el.value })" class="form-select">
+                                                <option value="">Selecione a Quantidade</option>
+                                                <template x-for="quantity in ticketRange">
+                                                    <option value="" x-model="quantity" x-text="quantity"></option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-5 mb-5">
+                                    <label class="form-label" for="ticket_price_input">Valor do Bilhete :</label>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-control-wrap">
+                                        <div class="input-group" x-data="{ data : '' }">
+                                            <input id="ticket_price_input" autocomplete="off" oninput="getTicketValue()"  class="form-control money" type="text" placeholder="0,00" maxlength="13" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-5 mb-5">
+                                    <label class="form-label">Faturamento : </label>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-label">
+                                        <p class="text-success h5" id="text-invoicing"><span>R$</span> 0,00</p>
+
+                                        <ul class="preview-list g-1 d-none" id="loading-spinner">
+                                            <li class="preview-item">
+                                                <div class="spinner-border text-success" role="status">      <span class="visually-hidden">Loading...</span>    </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/livewire/livewire.js?id=90730a3b0e7144480175" data-turbo-eval="false" data-turbolinks-eval="false" ></script><script data-turbo-eval="false" data-turbolinks-eval="false" >window.livewire = new Livewire();window.Livewire = window.livewire;window.livewire_app_url = '';window.livewire_token = 'B1dtbIpg7EnlGzBqqIax1Tviy1GDMNny8uEgYN5o';window.deferLoadingAlpine = function (callback) {window.addEventListener('livewire:load', function () {callback();});};let started = false;window.addEventListener('alpine:initializing', function () {if (! started) {window.livewire.start();started = true;}});document.addEventListener("DOMContentLoaded", function () {if (! started) {window.livewire.start();started = true;}});</script>
+    <script src="https://omtpremiado.com.br/dash/js/bundle.js"></script>
+    <script src="https://omtpremiado.com.br/dash/js/scripts.js"></script>
+    <script src="https://omtpremiado.com.br/dash/js/libs/editors/quill.js"></script>
+    <script src="https://omtpremiado.com.br/dash/js/editors.js"></script>
+    <script src="https://omtpremiado.com.br/js/dashboard/hideSeePassword.js"></script>
+    <script src="https://omtpremiado.com.br/dash/js/vendors/inputmask/jquery.inputmask.js"></script>
+    <script src="https://omtpremiado.com.br/dash/js/flatpickr.js"></script>
+    <script src="https://omtpremiado.com.br/dash/js/flatpickr-pt.js"></script>
+
+
+
+    <script>
+        function getFullTicketRange()
+        {
+            let ticketRange = Object.values({"0":10,"6":20,"2":25,"12":30,"18":40,"3":50,"29":60,"34":70,"14":75,"39":80,"44":90,"9":100,"15":150,"21":200,"26":250,"31":300,"36":350,"41":400,"46":450,"4":500,"54":550,"57":600,"60":650,"63":700,"66":750,"69":800,"72":850,"75":900,"78":950,"10":1000,"16":1500,"22":2000,"27":2500,"32":3000,"37":3500,"42":4000,"47":4500,"5":5000,"55":5500,"58":6000,"61":6500,"64":7000,"67":7500,"70":8000,"73":8500,"76":9000,"79":9500,"11":10000,"17":15000,"23":20000,"28":25000,"33":30000,"38":35000,"43":40000,"48":45000,"53":50000,"56":55000,"59":60000,"62":65000,"65":70000,"68":75000,"71":80000,"74":85000,"77":90000,"80":95000,"83":100000,"84":200000,"85":300000,"86":400000,"87":500000,"88":600000,"89":700000,"90":800000,"91":900000,"1":1000000,"7":2000000,"13":3000000,"19":4000000,"25":5000000,"30":6000000,"35":7000000,"40":8000000,"45":9000000,"50":10000000});
+
+            ticketRange.sort(function(a,b){
+                if(a > b) return 1;
+                if(a < b) return -1;
+
+                return 0;
+            })
+
+            return ticketRange;
+        }
+
+
+        function calculate()
+        {
+            var quantityTickets = document.querySelector("#ticket_range_numbers");
+            var ticketPrice = document.querySelector("#ticket_price_input");
+            var calculatorModal = document.querySelector("#calculator-modal");
+            var textInvoicing = document.querySelector("#text-invoicing");
+            var loadingSpinner = document.querySelector("#loading-spinner");
+
+            window.addEventListener("sendCalcValue",function(event){
+                if(quantityTickets.value && !ticketPrice.value || ticketPrice.value && !quantityTickets.value){
+                    textInvoicing.classList.add("d-none");
+                    loadingSpinner.classList.remove("d-none");
+
+                }else if(quantityTickets.value && ticketPrice.value){
+                    let total = parseFloat(quantityTickets.value) * parseFloat(ticketPrice.value);
+                    let result = "";
+
+                    text = total.toLocaleString("pt-BR", {
+                        style: 'currency',
+                        currency: 'BRL'
+                    });
+
+                    textInvoicing.classList.remove("d-none");
+                    loadingSpinner.classList.add("d-none");
+
+                    textInvoicing.innerHTML = text;
+
+                }else if(!quantityTickets.value && !ticketPrice.value){
+                    textInvoicing.classList.remove("d-none");
+                    loadingSpinner.classList.add("d-none");
+
+                    textInvoicing.innerHTML = "R$ 0,00";
+                }
+
+            });
+
+        }
+
+        function getTicketValue()
+        {
+            if(document.createEvent){
+                event = document.createEvent("HTMLEvents");
+                event.initEvent("sendCalcValue", true, true);
+                event.eventName = "sendCalcValue";
+                document.dispatchEvent(event);
+            } else {
+                event = document.createEventObject();
+                event.eventName = "sendCalcValue";
+                event.eventType = "sendCalcValue";
+                document.fireEvent("on" + event.eventType, event);
+            }
+        }
+
+        calculate();
+    </script>
+
+
+    <script>
+        $(".money").inputmask( 'currency',{ "autoUnmask": true,
+            radixPoint:",",
+            groupSeparator: ".",
+            allowMinus: false,
+            prefix: "R$ ",
+            digits: 2,
+            digitsOptional: false,
+            rightAlign: true,
+            unmaskAsNumber: true
+        });
+
+        $(".percentage").inputmask({
+            alias: 'percentage',
+            integerDigits:3,
+            digits: 2,
+            max:100,
+            allowMinus:false,
+            digitsOptional: false
+        });
+
+        $(".credit-card-number").inputmask('9999 9999 9999 9999');
+        $(".credit-cvv").inputmask('999');
+        $(".cpf").inputmask('999.999.999-99');
+        $('.whatsapp').inputmask({"mask": "(99) 9 9999-9999"});
+
+        $('.date-with-time-mask').inputmask("99/99/99 99:99");
+
+        $(document).ready(function() {
+            let inputs = $('.flatpickr-hour, .flatpickr-minute');
+            if(inputs.length > 0) {
+                inputs.prop('readonly', true)
+            }
+        });
+
+    </script>   
+                <!-- TODO: remove to no fire notification -->
+        <div class="modal fade"  tabindex="-1" id="notifications-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Notificações</h5>
+                </div>
+                <div class="d-flex justify-between w-20">
+                    <div wire:id="exFxMuj4FmUK7KqMX0f4" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;exFxMuj4FmUK7KqMX0f4&quot;,&quot;name&quot;:&quot;dashboard.notification.clean-notifications&quot;,&quot;locale&quot;:&quot;pt-BR&quot;,&quot;path&quot;:&quot;dashboard\/pedidos&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;refreshComponent&quot;,&quot;hasNotifications&quot;]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;9ee9a82a&quot;,&quot;data&quot;:{&quot;hasNotifications&quot;:true},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;c093c69610fe22212127b9c3e90e1320a3c628874824ca378092b2cb776e0845&quot;}}">
+            <div wire:loading wire:target="cleanNotifications">
+            <button class="btn btn-icon btn-sm btn-danger" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </button>
+        </div>
+
+        <div wire:target="cleanNotifications" wire:loading.remove>
+            <button
+                class="btn btn-icon btn-sm btn-danger"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Limpar Notificações"
+                wire:click="cleanNotifications">
+                <em class="icon ni ni-trash-alt"></em>
+            </button>
+        </div>
+
+    </div>
+
+<!-- Livewire Component wire-end:exFxMuj4FmUK7KqMX0f4 -->                    <div>
+                        <a href="#" class="close pl-3" data-dismiss="modal" aria-label="Close">
+                            <em class="icon ni ni-cross"></em>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div style="max-height: 250px; overflow-y: scroll;" class="modal-body p-0">
+                <div wire:id="0l1m99uDXrQG8R7g4y1s" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;0l1m99uDXrQG8R7g4y1s&quot;,&quot;name&quot;:&quot;dashboard.notification.notifications-list&quot;,&quot;locale&quot;:&quot;pt-BR&quot;,&quot;path&quot;:&quot;dashboard\/pedidos&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;7c794d7f&quot;,&quot;data&quot;:{&quot;perPage&quot;:30,&quot;maintenanceMode&quot;:false},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;a584f96f6ab5a668c7e8d8a07a18c919b915acf73a6a979d5c34c7000c6f2391&quot;}}">
+    <div>
+<div                wire:poll.10s
+    >
+                    <div class="p-4 d-flex justify-content-center align-items-center">Não há notificações</div>
+                    </div>
+    </div>
+</div>
+
+<!-- Livewire Component wire-end:0l1m99uDXrQG8R7g4y1s -->            </div>
+        </div>
+    </div>
+</div>
+        <div class="modal fade" tabindex="-1" id="modalMaintanance">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal-body-lg text-center">
+                <div class="nk-modal"><em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-alert bg-warning"></em>
+                    <h4 class="nk-modal-title">
+                                            Manutenção programada para amanhã.
+                                        </h4>
+                    <div class="nk-modal-text">
+                        <p class="lead">No dia 22/11/2025 o sistema ficará indisponível.</p>
+                        <p class="text-soft">Faça todas operações críticas antes dessa data.</p>
+                    </div>
+                    <div class="nk-modal-action mt-5"><a href="#" class="btn btn-lg btn-mw btn-light" data-dismiss="modal" aria-label="Close">Voltar</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <script>
+        document.addEventListener('livewire:load', function () {
+            $("status-filter").select2();
+            $("raffle-filter").select2();
+        })
+
+        const email_input = document.querySelector('#customer_email');
+        const searchByEmailTrigguer = document.querySelector('#search-customer-by-email-trigguer');
+
+
+        if(searchByEmailTrigguer) {
+
+            searchByEmailTrigguer.addEventListener('click', async () => {
+
+                const url = `https://omtpremiado.com.br/dashboard/cliente/search?email=${email_input.value}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                const name_input = document.querySelector('#customer_name');
+                const cpf_input = document.querySelector('#customer_cpf');
+                const phone_input = document.querySelector('#customer_phone');
+
+                if(data.cpf) {
+                    name_input.value = data.name;
+                    cpf_input.value = data.cpf;
+                    phone_input.value = data.phone;
+                }
+
+                document.querySelectorAll('.hidden-order-field').forEach(el => {
+                    el.classList.remove('d-none');
+                })
+            });
+        }
+
+        const modality_inputs = document.querySelectorAll('input[name="modality"]');
+
+        if (modality_inputs) {
+
+            const random_modality_wrapper = document.querySelector('#tickets_count_area_wrapper')
+            const panel_modality_wrapper = document.querySelector('#tickets_text_area_wrapper')
+            modality_inputs.forEach(input => {
+
+                input.addEventListener('change', ({ target }) => {
+
+                    if(target.value === 'panel') {
+                        random_modality_wrapper.classList.add('d-none');
+                        panel_modality_wrapper.classList.remove('d-none');
+                    }
+
+                    if(target.value === 'random') {
+                        random_modality_wrapper.classList.remove('d-none');
+                        panel_modality_wrapper.classList.add('d-none');
+                    }
+                })
+            })
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            const searchButton = document.getElementById('search-customer-by-email-trigguer');
+            const emailInput = document.getElementById('customer_email');
+            const warningMessage = document.getElementById('email-warning-message');
+            const hiddenFields = document.querySelectorAll('.hidden-order-field');
+
+            const nameInput = document.getElementById('customer_name');
+            const phoneInput = document.getElementById('customer_phone');
+            const cpfInput = document.getElementById('customer_cpf');
+
+            let customerSearched = false;
+
+            searchButton.addEventListener('click', function () {
+                customerSearched = true;
+                warningMessage.classList.add('d-none');
+                hiddenFields.forEach(field => field.classList.remove('d-none'));
+            });
+
+            emailInput.addEventListener('input', function () {
+                customerSearched = false;
+
+                hiddenFields.forEach(field => field.classList.add('d-none'));
+
+                nameInput.value = '';
+                phoneInput.value = '';
+                cpfInput.value = '';
+                warningMessage.classList.remove('d-none');
+            });
+
+            form.addEventListener('submit', function (event) {
+                if (!customerSearched) {
+                    event.preventDefault();
+                    warningMessage.classList.remove('d-none');
+                    searchButton.focus();
+                } else {
+                    warningMessage.classList.add('d-none');
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>
+

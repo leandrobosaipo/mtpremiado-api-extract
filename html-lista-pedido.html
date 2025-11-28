@@ -1,0 +1,2286 @@
+<div class="nk-content-body" bis_skin_checked="1">
+    <div class="nk-block-head nk-block-head-sm" bis_skin_checked="1">
+        <div class="nk-block-between" bis_skin_checked="1">
+            <div class="nk-block-head-content" bis_skin_checked="1">
+                <h3 class="nk-block-title page-title d-flex align-items-center gap-2">Pedidos <div bis_skin_checked="1">
+<span class="d-none d-md-inline">
+<a href="https://youtu.be/X4FDdMMx754" target="_blank">
+<span class="badge bg-primary rounded-pill" style="display: flex; cursor: pointer; align-items: center; margin-left: 8px; font-size: 12px;">
+<em class="icon ni ni-play"></em>
+<span style="margin-left: -4px;">Tutorial</span>
+</span>
+</a>
+</span>
+
+<span class="d-md-none">
+<a href="https://youtu.be/X4FDdMMx754" target="_blank">
+<span class="badge bg-primary rounded-pill" style="display: flex; cursor: pointer; align-items: center; margin-left: 8px; font-size: 12px;">
+<em class="icon ni ni-play"></em>
+<span style="margin-left: -4px;">Tutorial</span>
+</span>
+</a>
+</span>
+</div>
+
+</h3>
+            </div>
+            <div class="nk-block-head-content" bis_skin_checked="1">
+
+
+                <ul class="nk-block-tools g-3">
+
+                                                                        <li class="nk-block-tools-opt d-block">
+                            <a href="#" data-target="#newfiltersModal" data-toggle="modal" class="btn btn-icon btn-secondary">
+                                <em class="icon ni ni-filter"></em>
+                            </a>
+                        </li>
+                    
+                                                                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="nk-block" bis_skin_checked="1">
+        <div class="card card-stretch" bis_skin_checked="1">
+            <div class="card-inner-group" bis_skin_checked="1">
+                <div class="card-inner" bis_skin_checked="1">
+                    
+                                                                    <div class="card-title-group" bis_skin_checked="1">
+                        <div class="card-title" bis_skin_checked="1">
+                            <h5 class="title">Seus pedidos</h5>
+                        </div>
+                        <div class="card-tools mr-n1" bis_skin_checked="1">
+                            <ul class="btn-toolbar gx-1">
+                                <li>
+                                    <div class="dropdown" bis_skin_checked="1">
+                                        <a href="#" class="btn btn-trigger btn-icon dropdown-toggle" data-toggle="dropdown">
+                                            <em class="icon ni ni-filter-alt"></em>
+                                        </a>
+                                        <div style="min-width: 450px" class="filter-wg dropdown-menu dropdown-menu-xl dropdown-menu-right" bis_skin_checked="1">
+                                            <div class="dropdown-head" bis_skin_checked="1">
+                                                <span class="sub-title dropdown-title">Filtros</span>
+                                                <div class="dropdown" bis_skin_checked="1">
+                                                    <a href="#" class="link link-light">
+                                                        <em class="icon ni ni-more-h"></em>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-body dropdown-body-rg" bis_skin_checked="1">
+                                                <form action="https://omtpremiado.com.br/dashboard/pedidos">
+                                                    <div class="row gx-6 gy-4" bis_skin_checked="1">
+                                                        <div class="col-6" bis_skin_checked="1">
+                                                            <div class="form-group" bis_skin_checked="1">
+                                                                <label for="raffle-filter" class="overline-title overline-title-alt">
+                                                                    Sorteio
+                                                                </label>
+                                                                <select id="raffle-filter" name="raffle" data-search="on" class="form-select form-select-sm">
+                                                                    <option value="all">Todos</option>
+                                                                                                                                                                        <option value="2">
+                                                                            #2 BIZ 0KM
+                                                                        </option>
+                                                                                                                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6" bis_skin_checked="1">
+                                                            <div class="form-group" bis_skin_checked="1">
+                                                                <label for="status-filter" class="overline-title overline-title-alt">Status</label>
+                                                                <select id="status-filter" name="status" class="form-select form-select-sm">
+                                                                    <option value="all">Todos</option>
+                                                                    <option value="approved">
+                                                                        Aprovado
+                                                                    </option>
+                                                                    <option value="suspended">
+                                                                        Pendente
+                                                                    </option>
+                                                                    <option value="canceled">
+                                                                        Cancelado
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                                                                                                                <div class="col-12" bis_skin_checked="1">
+                                                                <div class="row" x-data="{ data : '', type_field: '' }" bis_skin_checked="1">
+                                                                    <div class="col-4" bis_skin_checked="1">
+                                                                        <div class="form-group" bis_skin_checked="1">
+                                                                            <label for="field" class="overline-title overline-title-alt">Campo</label>
+                                                                            <select name="field" id="field" class="form-select form-select-sm" x-model="type_field">
+                                                                                <option value="client_name">Cliente</option>
+                                                                                <option value="client_phone">Telefone</option>
+                                                                                <option value="client_email">E-mail</option>
+                                                                                <option value="client_cpf">CPF</option>
+                                                                                <option value="tickets">Bilhetes</option>
+                                                                                <option value="order_id">ID do pedido</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-4" bis_skin_checked="1">
+                                                                        <div class="form-group" bis_skin_checked="1">
+                                                                            <label for="operator" class="overline-title overline-title-alt">Operação</label>
+                                                                            <select name="operator" id="operator" class="form-select form-select-sm">
+                                                                                <option value="=">é igual</option>
+                                                                                <option value="LIKE">contém</option>
+                                                                                <option value="!=">é diferente</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-4" bis_skin_checked="1">
+                                                                        <div class="form-group" bis_skin_checked="1">
+                                                                            <label for="value" class="overline-title overline-title-alt">Valor</label>
+                                                                            <input class="form-control" x-mask:dynamic="type_field == 'client_cpf' ? '999.999.999-99' : ''" autocomplete="off" id="value" name="value" type="text">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        
+                                                        <div class="col-12" bis_skin_checked="1">
+                                                            <div class="form-group" bis_skin_checked="1">
+                                                                <button type="submit" class="btn btn-secondary">Filtrar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="dropdown-foot between" bis_skin_checked="1">
+                                                <a class="clickable" href="https://omtpremiado.com.br/dashboard/pedidos">
+                                                    Resetar Filtros
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown" bis_skin_checked="1">
+                                        <a href="#" class="btn btn-trigger btn-icon dropdown-toggle" data-toggle="dropdown">
+                                            <em class="icon ni ni-setting"></em>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xs dropdown-menu-right" bis_skin_checked="1">
+                                            <ul class="link-check">
+                                                <li>
+                                                    <span>Mostrar</span>
+                                                </li>
+                                                <li class="active">
+                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?perPage=15">15</a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?perPage=25">25</a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?perPage=40">40</a>
+                                                </li>
+                                            </ul>
+                                            <ul class="link-check">
+                                                <li>
+                                                    <span>Ordem</span>
+                                                </li>
+                                                <li>
+                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?order=desc">DESC</a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?order=asc">ASC</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-inner p-0" bis_skin_checked="1">
+                    <div class="nk-tb-list nk-tb-tnx" bis_skin_checked="1">
+                        <div class="nk-tb-item nk-tb-head" bis_skin_checked="1">
+                            <div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+                                <div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+                                    <input type="checkbox" class="custom-control-input" id="pid-all-models">
+                                    <label class="custom-control-label" for="pid-all-models"></label>
+                                </div>
+                            </div>
+                            <div class="nk-tb-col" bis_skin_checked="1">
+                                <span>#</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+                                <span>Criado há</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+                                <span>Status</span>
+                            </div>
+                            <div class="nk-tb-col" bis_skin_checked="1">
+                                <span>Sorteio</span>
+                            </div>
+                            <div class="nk-tb-col" bis_skin_checked="1">
+                                <span>Cliente</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+                                <span>Comprou</span>
+                            </div>
+                            <div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+                                <span>Valor</span>
+                            </div>
+                            <div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+                                                                                            <ul class="nk-tb-actions gx-1 my-n1">
+                                    <li>
+                                        <div class="drodown" bis_skin_checked="1">
+                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger mr-n1" data-toggle="dropdown">
+                                                <em class="icon ni ni-more-h"></em>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+                                                <ul class="link-list-opt no-bdr">
+                                                    
+
+                                                    
+                                                    
+                                                                                                                                        <li>
+                                                            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                                                                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                                                            <input type="hidden" class="ids-input" name="ids" value="">
+                                                                <a class="change-order-status-btn" href="#">
+                                                                    <em class="icon ni ni-na"></em>
+                                                                    <span>Suspender</span>
+                                                                </a>
+                                                            </form>
+                                                        </li>
+                                                                                                                                                                                                                                                                                                        <li id="delete-models-btn">
+                                                            <a href="#">
+                                                                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                                                                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                                                                <input type="hidden" name="_method" value="delete">                                                                                                <input type="hidden" name="ids" value="">
+                                                                </form>
+                                                                <em class="icon ni ni-trash"></em>
+                                                                <span>Remover</span>
+                                                            </a>
+                                                        </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                                                                        </div>
+                        </div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1313" id="1313">
+<label class="custom-control-label" for="1313"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-success" href="#">#1313</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="22 de novembro, 2025 às 11:27">
+
+8 minutos atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-success d-sm-none"></span>
+<span class="badge badge-dim bg-success-dim text-success badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">
+Aprovado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Adriana Mendes de Sá
+
+                        <span class="dot bg-success d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Aprovado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1313" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 66 99922-9742
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+130 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 13,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1313">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1313">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-na"></em>
+                        <span>Suspender</span>
+                    </a>
+                </form>
+            </li>
+                                        
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1313">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1313">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1312" id="1312">
+<label class="custom-control-label" for="1312"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-success" href="#">#1312</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="22 de novembro, 2025 às 10:47">
+
+47 minutos atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-success d-sm-none"></span>
+<span class="badge badge-dim bg-success-dim text-success badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">
+Aprovado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Juliana Fraporti
+
+                        <span class="dot bg-success d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Aprovado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1312" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 66 99607-3128
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+100 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 10,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1312">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1312">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-na"></em>
+                        <span>Suspender</span>
+                    </a>
+                </form>
+            </li>
+                                        
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1312">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1312">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1311" id="1311">
+<label class="custom-control-label" for="1311"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-success" href="#">#1311</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="22 de novembro, 2025 às 10:35">
+
+1 hora atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-success d-sm-none"></span>
+<span class="badge badge-dim bg-success-dim text-success badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">
+Aprovado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Karoline Oliveira Souza
+
+                        <span class="dot bg-success d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Aprovado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1311" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 65 99303-3387
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+100 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 10,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1311">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1311">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-na"></em>
+                        <span>Suspender</span>
+                    </a>
+                </form>
+            </li>
+                                        
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1311">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1311">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1310" id="1310">
+<label class="custom-control-label" for="1310"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-base" href="#">#1310</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 23:03">
+
+12 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-danger d-sm-none"></span>
+<span class="badge badge-dim bg-danger-dim text-danger badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex">
+Cancelado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Luci de Lima Matos
+
+                        <span class="dot bg-danger d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Cancelado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1310" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 66 99636-9936
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+94 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 9,40
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1310">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/verify_order">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1310">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-cloud"></em>
+                        <span>Verificar</span>
+                    </a>
+                </form>
+            </li>
+                                        
+    
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1310">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1310">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1309" id="1309">
+<label class="custom-control-label" for="1309"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-success" href="#">#1309</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 22:35">
+
+12 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-success d-sm-none"></span>
+<span class="badge badge-dim bg-success-dim text-success badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">
+Aprovado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Flávia
+
+                        <span class="dot bg-success d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Aprovado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1309" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 94 99147-5288
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+100 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 10,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1309">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1309">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-na"></em>
+                        <span>Suspender</span>
+                    </a>
+                </form>
+            </li>
+                                        
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1309">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1309">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1308" id="1308">
+<label class="custom-control-label" for="1308"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-success" href="#">#1308</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 21:15">
+
+14 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-success d-sm-none"></span>
+<span class="badge badge-dim bg-success-dim text-success badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">
+Aprovado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Débora Maria da Silva Menezes
+
+                        <span class="dot bg-success d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Aprovado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1308" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 66 99247-3050
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+100 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 10,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1308">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1308">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-na"></em>
+                        <span>Suspender</span>
+                    </a>
+                </form>
+            </li>
+                                        
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1308">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1308">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1307" id="1307">
+<label class="custom-control-label" for="1307"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-base" href="#">#1307</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 20:09">
+
+15 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-danger d-sm-none"></span>
+<span class="badge badge-dim bg-danger-dim text-danger badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex">
+Cancelado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Angela maria da silva
+
+                        <span class="dot bg-danger d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Cancelado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1307" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 66 99665-4643
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+100 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 7,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1307">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/verify_order">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1307">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-cloud"></em>
+                        <span>Verificar</span>
+                    </a>
+                </form>
+            </li>
+                                        
+    
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1307">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1307">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1306" id="1306">
+<label class="custom-control-label" for="1306"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-success" href="#">#1306</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 20:06">
+
+15 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-success d-sm-none"></span>
+<span class="badge badge-dim bg-success-dim text-success badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">
+Aprovado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Angela maria da silva
+
+                        <span class="dot bg-success d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Aprovado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1306" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 66 99665-4643
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+500 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 50,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1306">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1306">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-na"></em>
+                        <span>Suspender</span>
+                    </a>
+                </form>
+            </li>
+                                        
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1306">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1306">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1305" id="1305">
+<label class="custom-control-label" for="1305"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-base" href="#">#1305</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 20:06">
+
+15 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-danger d-sm-none"></span>
+<span class="badge badge-dim bg-danger-dim text-danger badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex">
+Cancelado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Angela maria da silva
+
+                        <span class="dot bg-danger d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Cancelado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1305" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 66 99665-4643
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+500 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 50,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1305">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/verify_order">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1305">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-cloud"></em>
+                        <span>Verificar</span>
+                    </a>
+                </form>
+            </li>
+                                        
+    
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1305">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1305">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1304" id="1304">
+<label class="custom-control-label" for="1304"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-base" href="#">#1304</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 19:44">
+
+15 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-danger d-sm-none"></span>
+<span class="badge badge-dim bg-danger-dim text-danger badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex">
+Cancelado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Jorge Luiz Oliveira Nascimento
+
+                        <span class="dot bg-danger d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Cancelado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1304" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 65 99230-2444
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+100 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 10,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1304">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/verify_order">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1304">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-cloud"></em>
+                        <span>Verificar</span>
+                    </a>
+                </form>
+            </li>
+                                        
+    
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1304">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1304">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1303" id="1303">
+<label class="custom-control-label" for="1303"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-success" href="#">#1303</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 19:34">
+
+16 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-success d-sm-none"></span>
+<span class="badge badge-dim bg-success-dim text-success badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">
+Aprovado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Marciane Marmett Malossi
+
+                        <span class="dot bg-success d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Aprovado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1303" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 65 99810-4334
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+100 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 10,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1303">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1303">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-na"></em>
+                        <span>Suspender</span>
+                    </a>
+                </form>
+            </li>
+                                        
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1303">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1303">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1302" id="1302">
+<label class="custom-control-label" for="1302"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-success" href="#">#1302</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 19:24">
+
+16 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-success d-sm-none"></span>
+<span class="badge badge-dim bg-success-dim text-success badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">
+Aprovado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Marília leite da Silva Campos
+
+                        <span class="dot bg-success d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Aprovado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1302" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 65 99206-4754
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+150 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 15,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1302">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1302">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-na"></em>
+                        <span>Suspender</span>
+                    </a>
+                </form>
+            </li>
+                                        
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1302">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1302">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1301" id="1301">
+<label class="custom-control-label" for="1301"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-base" href="#">#1301</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 19:24">
+
+16 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-danger d-sm-none"></span>
+<span class="badge badge-dim bg-danger-dim text-danger badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex">
+Cancelado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Marília leite da Silva Campos
+
+                        <span class="dot bg-danger d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Cancelado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1301" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 65 99206-4754
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+100 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 10,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1301">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/verify_order">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1301">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-cloud"></em>
+                        <span>Verificar</span>
+                    </a>
+                </form>
+            </li>
+                                        
+    
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1301">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1301">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1300" id="1300">
+<label class="custom-control-label" for="1300"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-base" href="#">#1300</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 19:23">
+
+16 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-danger d-sm-none"></span>
+<span class="badge badge-dim bg-danger-dim text-danger badge-sm badge-dot has-bg bg-danger d-none d-sm-inline-flex">
+Cancelado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Marília leite da Silva Campos
+
+                        <span class="dot bg-danger d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Cancelado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1300" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 65 99206-4754
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+150 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 15,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1300">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/verify_order">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1300">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-cloud"></em>
+                        <span>Verificar</span>
+                    </a>
+                </form>
+            </li>
+                                        
+    
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1300">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1300">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                                                                                <div class="nk-tb-item" bis_skin_checked="1">
+<div class="nk-tb-col nk-tb-col-check" bis_skin_checked="1">
+<div class="custom-control custom-control-sm custom-checkbox notext" bis_skin_checked="1">
+<input type="checkbox" class="custom-control-input model-id-checkbox" value="1299" id="1299">
+<label class="custom-control-label" for="1299"></label>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<span class="tb-lead">
+<a class="text-success" href="#">#1299</a>
+</span>
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" data-original-title="21 de novembro, 2025 às 18:42">
+
+16 horas atrás
+</span>
+</div>
+<div class="nk-tb-col tb-col-xl" bis_skin_checked="1">
+<span class="dot bg-success d-sm-none"></span>
+<span class="badge badge-dim bg-success-dim text-success badge-sm badge-dot has-bg bg-success d-none d-sm-inline-flex">
+Aprovado
+</span>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<div class="user-card" bis_skin_checked="1">
+<div class="user-info" bis_skin_checked="1">
+<span class="tb-lead" data-toggle="tooltip" data-placement="top" title="" data-original-title="BIZ 0KM">
+BIZ 0KM
+</span>
+<span>10000000 bilhetes</span>
+</div>
+</div>
+</div>
+<div class="nk-tb-col" bis_skin_checked="1">
+<a href="#">
+</a><div class="user-card" bis_skin_checked="1"><a href="#">
+</a><div class="user-info" x-data="{ data : '' }" bis_skin_checked="1"><a href="#">
+<span class="tb-lead">Ruan Chaves Ferrari
+
+                        <span class="dot bg-success d-xl-none ms-1"></span>
+
+</span>
+
+                </a><a data-wm-order-status="Aprovado" data-toggle="modal" href="#" class="whatsapp-message-link d-flex align-items-center sensitive-data" @click="document.querySelector('#wpp_order_id').value = 1299" data-target="#wppModal">
+<em class="icon ni ni-whatsapp mr-1"></em>
+
+
+                                +55 65 99675-4950
+                        </a>
+
+</div>
+</div>
+
+</div>
+<div class="nk-tb-col tb-col-md" bis_skin_checked="1">
+<span class="tb-sub text-primary">
+100 bilhetes
+</span>
+</div>
+<div class="nk-tb-col tb-col-sm" bis_skin_checked="1">
+<span class="tb-lead">
+<span>R$</span> 10,00
+</span>
+</div>
+<div class="nk-tb-col nk-tb-col-tools" bis_skin_checked="1">
+
+<ul class="nk-tb-actions gx-1">
+<li>
+<div class="drodown mr-n1" bis_skin_checked="1">
+<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">
+<em class="icon ni ni-more-h"></em>
+</a>
+<div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+<ul class="link-list-opt no-bdr">
+
+    <li>
+        <a href="https://omtpremiado.com.br/dashboard/pedidos/detalhes/1299">
+            <em class="icon ni ni-eye"></em>
+            <span>Ver detalhes</span>
+        </a>
+    </li>
+
+    
+    
+    
+                                                <li>
+                <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/suspend">
+                    <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                                <input type="hidden" name="ids" value="1299">
+                    <a onclick="event.preventDefault();this.closest('form').submit()" href="#">
+                        <em class="icon ni ni-na"></em>
+                        <span>Suspender</span>
+                    </a>
+                </form>
+            </li>
+                                        
+                                        <li class="change-user-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos/generate">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="order_id" value="1299">
+                <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <em class="icon ni ni-ticket"></em>
+                    <span>Gerar Bilhetes</span>
+                </a>
+            </form>
+        </li>
+    
+                                        <li class="delete-model-btn">
+            <form method="POST" action="https://omtpremiado.com.br/dashboard/pedidos">
+                <input type="hidden" name="_token" value="8W7HRk6xTVQVLMimU7bnuR7uitZeqDi7YacZmCdZ">                                            <input type="hidden" name="_method" value="delete">                                            <input type="hidden" name="ids" value="1299">
+                <a href="#">
+                    <em class="icon ni ni-trash"></em>
+                    <span>Remover</span>
+                </a>
+            </form>
+        </li>
+                                </ul>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+                        
+                    </div>
+                </div>
+                <nav role="navigation" style="display: none" aria-label="Pagination Navigation" class="">
+<div class="flex justify-between flex-1 sm:hidden" bis_skin_checked="1">
+<span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
+pagination.previous
+</span>
+
+<a href="https://omtpremiado.com.br/dashboard/pedidos?page=2" class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+pagination.next
+</a>
+</div>
+
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between" bis_skin_checked="1">
+<div bis_skin_checked="1">
+<p class="text-sm text-gray-700 leading-5">
+Showing
+                <span class="font-medium">1</span>
+to
+<span class="font-medium">15</span>
+            of
+<span class="font-medium">1311</span>
+results
+</p>
+</div>
+
+<div bis_skin_checked="1">
+<span class="relative z-0 inline-flex shadow-sm rounded-md">
+
+                <span aria-disabled="true" aria-label="pagination.previous">
+<span class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-l-md leading-5" aria-hidden="true">
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+    </svg>
+</span>
+</span>
+
+
+                
+
+
+                                                                                            <span aria-current="page">
+            <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5">1</span>
+        </span>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=2" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 2">
+            2
+        </a>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=3" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 3">
+            3
+        </a>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=4" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 4">
+            4
+        </a>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=5" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 5">
+            5
+        </a>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=6" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 6">
+            6
+        </a>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=7" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 7">
+            7
+        </a>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=8" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 8">
+            8
+        </a>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=9" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 9">
+            9
+        </a>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=10" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 10">
+            10
+        </a>
+                                                                                                    
+                        <span aria-disabled="true">
+    <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 cursor-default leading-5">...</span>
+</span>
+
+
+                                        
+
+
+                                                                                            <a href="https://omtpremiado.com.br/dashboard/pedidos?page=87" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 87">
+            87
+        </a>
+                                                                                                    <a href="https://omtpremiado.com.br/dashboard/pedidos?page=88" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150" aria-label="Go to page 88">
+            88
+        </a>
+                                                                            
+
+                <a href="https://omtpremiado.com.br/dashboard/pedidos?page=2" rel="next" class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150" aria-label="pagination.next">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+</svg>
+</a>
+        </span>
+</div>
+</div>
+</nav>
+<div class="card mt-3" bis_skin_checked="1">
+<div class="card-inner" bis_skin_checked="1">
+<div class="nk-block-between-md g-3" bis_skin_checked="1">
+<div class="g" bis_skin_checked="1">
+<ul class="pagination justify-content-center justify-content-md-start">
+
+<li class="page-item">
+    <a class="page-link">Voltar</a>
+</li>
+
+
+
+
+                                                                                                                        <li class="page-item bg-gray-200 bg-opacity-90">
+                    <a class="page-link">1</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=2">2</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=3">3</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=4">4</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=5">5</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=6">6</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=7">7</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=8">8</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=9">9</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=10">10</a>
+                </li>
+                                                                                
+
+                                <li class="page-item">
+        <a class="page-link">...</a>
+    </li>
+
+
+
+
+
+
+                                                                                                                        <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=87">87</a>
+                </li>
+                                                                                                                                    <li class="page-item">
+                    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=88">88</a>
+                </li>
+                                                                                
+
+                        <li class="page-item">
+    <a class="page-link" href="https://omtpremiado.com.br/dashboard/pedidos?page=2">Próxima</a>
+</li>
+                </ul>
+</div>
+
+<div class="g" bis_skin_checked="1">
+<div class="pagination-goto d-flex justify-content-center justify-content-md-start gx-3" bis_skin_checked="1">
+<div bis_skin_checked="1">
+Página 1 de 88
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
