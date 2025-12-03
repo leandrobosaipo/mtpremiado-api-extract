@@ -59,7 +59,10 @@ class PedidosController:
                         except (ValueError, TypeError):
                             continue
                     if int_ids:
-                        last_id_processed = max(int_ids)
+                        # Usa o MENOR ID para permitir continuar paginação corretamente
+                        # Os pedidos vêm ordenados do mais recente (maior ID) para o mais antigo (menor ID)
+                        # Então precisamos do menor ID para buscar os próximos pedidos
+                        last_id_processed = min(int_ids)
             
             # Determina se há mais pedidos
             # Se retornou exatamente 'limit' pedidos, pode haver mais
