@@ -15,6 +15,7 @@ from src.scraper.detalhes_playwright import DetalhesScraperPlaywright
 from src.core.settings import settings
 from src.core.logger import get_logger
 from src.core.state_manager import StateManager
+from src.core.page_cache import PageCache
 from src.api.schemas.pedido_schema import PedidosResponseSchema, PedidoDetalhesSchema, PaginationMetadata
 
 logger = get_logger()
@@ -25,83 +26,181 @@ class PedidosController:
     
     @staticmethod
     async def extract_all_pedidos_full(
-        last_id: Optional[int] = None,
+        page: Optional[int] = None,
         limit: Optional[int] = None
     ) -> PedidosResponseSchema:
-        """Extrai pedidos com detalhes completos, com suporte a paginação.
+        """Extrai pedidos com detalhes completos, com suporte a paginação baseada em páginas.
         
         Args:
-            last_id: Último ID conhecido. Retorna apenas pedidos com ID > last_id.
-            limit: Limite de pedidos a retornar. Se não fornecido, retorna todos.
+            page: Número da página a retornar (1-indexed). Se não fornecido, retorna página 1.
+            limit: Quantos pedidos por página. Se não fornecido, retorna todos os pedidos da página.
         """
-        if settings.USE_PLAYWRIGHT:
-            response = await PedidosController._extract_with_playwright(last_id=last_id, limit=limit)
+        # Usa página 1 como padrão
+        if page is None:
+            page = 1
+        
+        page_cache = PageCache()
+        
+        # Tenta obter página do cache primeiro
+        cached_pedidos = page_cache.get_page(page)
+        
+        if cached_pedidos is not None:
+            logger.info("using_cached_page", page=page, pedidos_count=len(cached_pedidos))
+            print(f"[INFO] Usando página {page} do cache ({len(cached_pedidos)} pedidos)")
+            pedidos_listagem = cached_pedidos
+            # Quando usa cache, precisa criar sessão apenas para detalhes
+            pedidos_completos = await PedidosController._extract_detalhes(pedidos_listagem)
         else:
-            response = PedidosController._extract_with_requests(last_id=last_id, limit=limit)
+            # Busca página do site e extrai detalhes na mesma sessão (mais eficiente)
+            logger.info("fetching_page_from_site", page=page)
+            print(f"[INFO] Buscando página {page} do site...")
+            
+            if settings.USE_PLAYWRIGHT:
+                pedidos_listagem, pedidos_completos = await PedidosController._fetch_page_with_details_playwright(page)
+            else:
+                pedidos_listagem, pedidos_completos = PedidosController._fetch_page_with_details_requests(page)
+            
+            # Salva apenas listagem no cache (sem detalhes para economizar espaço)
+            if pedidos_listagem:
+                page_cache.save_page(page, pedidos_listagem)
+                logger.info("page_cached", page=page, pedidos_count=len(pedidos_listagem))
         
-        # Calcula metadados de paginação se limit foi usado
-        if limit is not None:
-            # Encontra o último ID processado
-            last_id_processed = None
-            if response.pedidos:
-                pedido_ids = [
-                    p.id for p in response.pedidos 
-                    if p.id is not None
-                ]
-                if pedido_ids:
-                    # Converte para int se necessário
-                    int_ids = []
-                    for pid in pedido_ids:
-                        try:
-                            pid_int = int(pid) if isinstance(pid, str) and pid.isdigit() else pid
-                            if isinstance(pid_int, int):
-                                int_ids.append(pid_int)
-                        except (ValueError, TypeError):
-                            continue
-                    if int_ids:
-                        # Usa o MENOR ID para permitir continuar paginação corretamente
-                        # Os pedidos vêm ordenados do mais recente (maior ID) para o mais antigo (menor ID)
-                        # Então precisamos do menor ID para buscar os próximos pedidos
-                        last_id_processed = min(int_ids)
-            
-            # Determina se há mais pedidos
-            # Se retornou exatamente 'limit' pedidos, pode haver mais
-            has_more = len(response.pedidos) == limit
-            
-            pagination = PaginationMetadata(
-                last_id_processed=last_id_processed,
-                has_more=has_more,
-                total_available=None,  # Não sabemos sem contar tudo
-                limit=limit,
-                last_id_requested=last_id
-            )
-            response.pagination = pagination
+        # Aplica limite se fornecido
+        if limit is not None and limit > 0:
+            pedidos_completos = pedidos_completos[:limit]
         
-        # Salva maior ID encontrado apenas se NÃO estiver usando paginação
-        # (comportamento original do /full quando não há limit)
-        # Não salvar estado automaticamente quando usar paginação (diferente do /incremental)
-        if limit is None and response.pedidos:
-            max_id = None
-            for pedido in response.pedidos:
-                pedido_id = pedido.id
-                if pedido_id is not None:
-                    try:
-                        pedido_id_int = int(pedido_id) if isinstance(pedido_id, str) and pedido_id.isdigit() else pedido_id
-                        if isinstance(pedido_id_int, int):
-                            if max_id is None or pedido_id_int > max_id:
-                                max_id = pedido_id_int
-                    except (ValueError, TypeError):
-                        continue
-            
-            if max_id:
-                StateManager.save_last_order_id(max_id)
-                logger.info("saved_last_order_id_from_full", last_order_id=max_id)
+        # Constrói resposta
+        response = PedidosController._build_response(pedidos_completos)
+        
+        # Calcula metadados de paginação
+        total_pages_cached = page_cache.get_total_pages_cached()
+        
+        # Determina se há mais páginas
+        # Se retornou pedidos, pode haver mais (não sabemos o total exato sem buscar todas as páginas)
+        # Uma heurística: se retornou menos pedidos que o esperado de uma página completa, pode ser a última
+        has_more = len(pedidos_completos) > 0
+        
+        # Se limit foi fornecido e retornou menos que limit, provavelmente não há mais
+        if limit is not None and len(pedidos_completos) < limit:
+            has_more = False
+        
+        pagination = PaginationMetadata(
+            last_id_processed=None,  # Não usado mais com paginação por página
+            has_more=has_more,
+            total_available=None,
+            limit=limit,
+            last_id_requested=None,  # Não usado mais
+            current_page=page,
+            total_pages_cached=total_pages_cached
+        )
+        response.pagination = pagination
         
         # Salva JSON se configurado
         if settings.EXPORT_JSON:
             PedidosController._save_json_response(response)
         
         return response
+    
+    @staticmethod
+    def _fetch_page_with_details_requests(page_num: int) -> tuple[List[Dict], List[Dict]]:
+        """Busca uma página específica e extrai detalhes usando requests na mesma sessão."""
+        try:
+            with get_authenticated_session() as session:
+                # Busca listagem
+                listagem_scraper = ListagemScraper(session)
+                pedidos_listagem = listagem_scraper.extract_page(page_num)
+                
+                # Extrai detalhes na mesma sessão
+                detalhes_scraper = DetalhesScraper(session)
+                pedidos_completos = []
+                
+                for pedido in pedidos_listagem:
+                    try:
+                        if pedido.get("detalhes_url"):
+                            detalhes = detalhes_scraper.extract_detalhes(pedido["detalhes_url"])
+                            pedido_completo = {**pedido, **detalhes}
+                        else:
+                            pedido_completo = pedido
+                        pedidos_completos.append(pedido_completo)
+                    except Exception as e:
+                        logger.warning("order_detail_skipped", error=str(e), pedido_id=pedido.get("id"))
+                        pedidos_completos.append(pedido)
+                
+                return pedidos_listagem, pedidos_completos
+        except Exception as e:
+            logger.error("extraction_error", error=str(e), method="requests", page=page_num)
+            raise
+    
+    @staticmethod
+    async def _fetch_page_with_details_playwright(page_num: int) -> tuple[List[Dict], List[Dict]]:
+        """Busca uma página específica e extrai detalhes usando Playwright na mesma sessão."""
+        try:
+            async with PlaywrightSession() as playwright_session:
+                page = await playwright_session.login()
+                
+                # Busca listagem
+                listagem_scraper = ListagemScraperPlaywright(page)
+                pedidos_listagem = await listagem_scraper.extract_page(page_num)
+                
+                # Extrai detalhes na mesma sessão
+                detalhes_scraper = DetalhesScraperPlaywright(page)
+                pedidos_completos = []
+                
+                for pedido in pedidos_listagem:
+                    try:
+                        if pedido.get("detalhes_url"):
+                            detalhes = await detalhes_scraper.extract_detalhes(pedido["detalhes_url"])
+                            pedido_completo = {**pedido, **detalhes}
+                        else:
+                            pedido_completo = pedido
+                        pedidos_completos.append(pedido_completo)
+                    except Exception as e:
+                        logger.warning("order_detail_skipped", error=str(e), pedido_id=pedido.get("id"))
+                        pedidos_completos.append(pedido)
+                
+                return pedidos_listagem, pedidos_completos
+        except Exception as e:
+            logger.error("extraction_error", error=str(e), method="playwright", page=page_num)
+            raise
+    
+    @staticmethod
+    async def _extract_detalhes(pedidos_listagem: List[Dict]) -> List[Dict]:
+        """Extrai detalhes de uma lista de pedidos."""
+        pedidos_completos = []
+        
+        if settings.USE_PLAYWRIGHT:
+            async with PlaywrightSession() as playwright_session:
+                page = await playwright_session.login()
+                detalhes_scraper = DetalhesScraperPlaywright(page)
+                
+                for pedido in pedidos_listagem:
+                    try:
+                        if pedido.get("detalhes_url"):
+                            detalhes = await detalhes_scraper.extract_detalhes(pedido["detalhes_url"])
+                            pedido_completo = {**pedido, **detalhes}
+                        else:
+                            pedido_completo = pedido
+                        pedidos_completos.append(pedido_completo)
+                    except Exception as e:
+                        logger.warning("order_detail_skipped", error=str(e), pedido_id=pedido.get("id"))
+                        pedidos_completos.append(pedido)
+        else:
+            with get_authenticated_session() as session:
+                detalhes_scraper = DetalhesScraper(session)
+                
+                for pedido in pedidos_listagem:
+                    try:
+                        if pedido.get("detalhes_url"):
+                            detalhes = detalhes_scraper.extract_detalhes(pedido["detalhes_url"])
+                            pedido_completo = {**pedido, **detalhes}
+                        else:
+                            pedido_completo = pedido
+                        pedidos_completos.append(pedido_completo)
+                    except Exception as e:
+                        logger.warning("order_detail_skipped", error=str(e), pedido_id=pedido.get("id"))
+                        pedidos_completos.append(pedido)
+        
+        return pedidos_completos
     
     @staticmethod
     def _extract_with_requests(

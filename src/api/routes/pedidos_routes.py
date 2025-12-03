@@ -27,69 +27,88 @@ debug_router = APIRouter(prefix="/api/debug", tags=["debug"])
     summary="Extrai pedidos com detalhes completos",
     description="""
 ## O que faz
-Extrai todos os pedidos com todos os detalhes. Você pode pedir todos de uma vez ou usar paginação para pegar em lotes.
+Extrai pedidos com todos os detalhes usando paginação baseada em páginas com cache inteligente.
 
 ## Quando usar
-- **Sem parâmetros**: Quando quer TODOS os pedidos de uma vez (pode demorar se houver muitos)
-- **Com `limit`**: Quando quer pegar apenas alguns pedidos por vez (ex: 100 por vez)
-- **Com `last_id` e `limit`**: Quando quer continuar de onde parou (para pegar os próximos 100 depois dos primeiros 100)
+- **Sem parâmetros**: Retorna página 1 (padrão)
+- **Com `page`**: Especifica qual página você quer (ex: página 1, 2, 3...)
+- **Com `limit`**: Limita quantos pedidos retornar da página (ex: apenas 100 da página)
 
 ## Parâmetros
-- **`last_id`** (opcional): Último ID que você já tem. Retorna apenas pedidos com ID maior que este.
-  - Exemplo: `?last_id=1200` → Retorna apenas pedidos com ID > 1200
-- **`limit`** (opcional): Quantos pedidos você quer receber.
-  - Exemplo: `?limit=100` → Retorna no máximo 100 pedidos
-  - Se não usar, retorna TODOS os pedidos
+- **`page`** (opcional, padrão: 1): Número da página a retornar (1-indexed).
+  - Exemplo: `?page=1` → Retorna primeira página
+  - Exemplo: `?page=2` → Retorna segunda página
+- **`limit`** (opcional): Quantos pedidos retornar da página.
+  - Exemplo: `?limit=100` → Retorna no máximo 100 pedidos da página
+  - Se não usar, retorna TODOS os pedidos da página
+
+## Como Funciona o Cache
+
+O sistema cacheia automaticamente as páginas conforme são buscadas:
+- **Primeira vez**: Busca página do site e salva no cache
+- **Próximas vezes**: Retorna página do cache (muito mais rápido!)
+- **Cache persiste**: Páginas ficam salvas em `data/pages_cache.json`
 
 ## Teste Primeiro
-1. Teste sem parâmetros: `GET {{BASE_URL}}/api/pedidos/full`
-   - Deve retornar todos os pedidos
-   - Verifique se `total` mostra quantos pedidos foram encontrados
-2. Teste com limit pequeno: `GET {{BASE_URL}}/api/pedidos/full?limit=5`
-   - Deve retornar apenas 5 pedidos
-   - Verifique se `pagination` aparece na resposta
-   - Verifique se `pagination.has_more` é `true` ou `false`
+1. Teste página 1: `GET {{BASE_URL}}/api/pedidos/full?page=1`
+   - Deve retornar pedidos da primeira página
+   - Verifique se `pagination.current_page` é 1
+   - Verifique se `pagination.total_pages_cached` mostra quantas páginas estão em cache
+
+2. Teste página 2: `GET {{BASE_URL}}/api/pedidos/full?page=2`
+   - Deve retornar pedidos da segunda página
+   - Se já estava em cache, retorna instantaneamente
 
 ## Teste Depois
 1. Teste paginação completa:
-   - Primeira chamada: `GET {{BASE_URL}}/api/pedidos/full?limit=100`
-   - Anote o `pagination.last_id_processed` da resposta
-   - Segunda chamada: `GET {{BASE_URL}}/api/pedidos/full?last_id={valor_anotado}&limit=100`
-   - Deve retornar os próximos 100 pedidos
+   - Primeira chamada: `GET {{BASE_URL}}/api/pedidos/full?page=1&limit=100`
+   - Segunda chamada: `GET {{BASE_URL}}/api/pedidos/full?page=2&limit=100`
+   - Terceira chamada: `GET {{BASE_URL}}/api/pedidos/full?page=3&limit=100`
+   - Continue até que `pagination.has_more` seja `false`
+
 2. Teste quando não há mais pedidos:
-   - Use um `last_id` muito alto (ex: 999999)
-   - Deve retornar lista vazia ou poucos pedidos
+   - Use um `page` muito alto (ex: 999)
+   - Deve retornar lista vazia
    - `pagination.has_more` deve ser `false`
 
 ## Como saber que terminou
 - Se `pagination.has_more` é `false`, não há mais pedidos
-- Se `total` é menor que `limit`, você chegou ao fim
 - Se a lista de `pedidos` está vazia, não há mais pedidos
+- Continue incrementando `page` até não retornar mais pedidos
 
 ## Exemplos Curl
 
 ```bash
-# Exemplo 1: Buscar todos os pedidos (sem paginação)
+# Exemplo 1: Buscar primeira página (padrão)
 curl -X GET '{{BASE_URL}}/api/pedidos/full'
 
-# Exemplo 2: Buscar apenas 100 pedidos (primeira página)
-curl -X GET '{{BASE_URL}}/api/pedidos/full?limit=100'
+# Exemplo 2: Buscar página 1 explicitamente
+curl -X GET '{{BASE_URL}}/api/pedidos/full?page=1'
 
-# Exemplo 3: Buscar próximos 100 pedidos (continuando de onde parou)
-# Use o last_id_processed da resposta anterior
-curl -X GET '{{BASE_URL}}/api/pedidos/full?last_id=1200&limit=100'
+# Exemplo 3: Buscar página 2
+curl -X GET '{{BASE_URL}}/api/pedidos/full?page=2'
 
-# Exemplo 4: Buscar apenas pedidos mais recentes que um ID específico
-curl -X GET '{{BASE_URL}}/api/pedidos/full?last_id=1000'
+# Exemplo 4: Buscar página 1 com limite de 100 pedidos
+curl -X GET '{{BASE_URL}}/api/pedidos/full?page=1&limit=100'
+
+# Exemplo 5: Buscar página 2 com limite de 100 pedidos
+curl -X GET '{{BASE_URL}}/api/pedidos/full?page=2&limit=100'
 ```
 """
 )
 async def get_pedidos_full(
-    last_id: Optional[int] = Query(None, description="Último ID conhecido. Retorna apenas pedidos com ID > last_id. Exemplo: ?last_id=1200"),
-    limit: Optional[int] = Query(None, description="Limite de pedidos a retornar. Se não fornecido, retorna todos. Exemplo: ?limit=100")
+    page: Optional[int] = Query(None, description="Número da página a retornar (1-indexed). Se não fornecido, retorna página 1. Exemplo: ?page=1"),
+    limit: Optional[int] = Query(None, description="Limite de pedidos a retornar da página. Se não fornecido, retorna todos os pedidos da página. Exemplo: ?limit=100")
 ) -> PedidosResponseSchema:
-    """Endpoint para extrair pedidos com detalhes completos, com suporte a paginação."""
+    """Endpoint para extrair pedidos com detalhes completos, com suporte a paginação baseada em páginas."""
     try:
+        # Validação de page se fornecido
+        if page is not None and page < 1:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="O parâmetro 'page' deve ser maior ou igual a 1"
+            )
+        
         # Validação de limit se fornecido
         if limit is not None and limit <= 0:
             raise HTTPException(
@@ -97,15 +116,8 @@ async def get_pedidos_full(
                 detail="O parâmetro 'limit' deve ser maior que 0"
             )
         
-        # Validação de last_id se fornecido
-        if last_id is not None and last_id < 0:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="O parâmetro 'last_id' deve ser maior ou igual a 0"
-            )
-        
         controller = PedidosController()
-        return await controller.extract_all_pedidos_full(last_id=last_id, limit=limit)
+        return await controller.extract_all_pedidos_full(page=page, limit=limit)
         
     except AuthenticationError as e:
         logger.error("api_authentication_error", detail=str(e.detail))

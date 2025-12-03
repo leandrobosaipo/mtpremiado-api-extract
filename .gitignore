@@ -56,6 +56,7 @@ Thumbs.db
 # Dados e exports
 data/exports/*.json
 data/last_order_state.json
+data/pages_cache.json
 debug/**/*.png
 debug/**/*.html
 !debug/.gitkeep

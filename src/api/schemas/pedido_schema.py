@@ -8,11 +8,13 @@ from datetime import datetime
 class PaginationMetadata(BaseModel):
     """Metadados de paginação para respostas paginadas."""
     
-    last_id_processed: Optional[int] = Field(None, description="Último ID processado nesta requisição")
+    last_id_processed: Optional[int] = Field(None, description="Último ID processado nesta requisição (deprecated)")
     has_more: bool = Field(..., description="Se há mais pedidos disponíveis")
     total_available: Optional[int] = Field(None, description="Total de pedidos disponíveis (se conhecido)")
-    limit: int = Field(..., description="Limite de pedidos solicitado")
-    last_id_requested: Optional[int] = Field(None, description="Último ID usado na requisição")
+    limit: Optional[int] = Field(None, description="Limite de pedidos solicitado")
+    last_id_requested: Optional[int] = Field(None, description="Último ID usado na requisição (deprecated)")
+    current_page: Optional[int] = Field(None, description="Página atual retornada")
+    total_pages_cached: Optional[int] = Field(None, description="Total de páginas em cache")
 
 
 class PedidoDetalhesSchema(BaseModel):

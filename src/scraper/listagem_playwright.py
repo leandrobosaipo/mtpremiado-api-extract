@@ -338,6 +338,61 @@ class ListagemScraperPlaywright:
         rows = soup.select(".nk-tb-item:not(.nk-tb-head)")
         return len(rows) > 0
     
+    async def extract_page(self, page_num: int) -> List[Dict]:
+        """Extrai pedidos de uma página específica.
+        
+        Args:
+            page_num: Número da página a extrair (1-indexed)
+            
+        Returns:
+            Lista de pedidos da página
+        """
+        start_time = DebugHelper.start_timer(f"extract_page_{page_num}")
+        DebugHelper.log_step("extract_page_start", {"page": page_num})
+        logger.info("scraping_page_start", page=page_num)
+        
+        try:
+            soup = await self._fetch_page(page_num)
+            
+            # Encontra linhas de pedidos testando múltiplos seletores
+            rows, working_selector = self._find_pedidos_rows(soup, page_num)
+            
+            if not rows:
+                logger.info("scraping_page_complete", page=page_num, pedidos=0, selector="none")
+                DebugHelper.end_timer(start_time, f"extract_page_{page_num}", {"success": True, "pedidos": 0})
+                return []
+            
+            logger.info("rows_found", page=page_num, count=len(rows))
+            print(f"[INFO] Processando página {page_num}...")
+            
+            page_pedidos = []
+            for i, row in enumerate(rows):
+                pedido = self._extract_pedido_from_row(row)
+                if pedido:
+                    page_pedidos.append(pedido)
+                elif settings.DEBUG_HTML:
+                    logger.debug("row_skipped", page=page_num, row_index=i)
+            
+            print(f"[INFO] Página {page_num} processada: {len(page_pedidos)} pedidos encontrados")
+            
+            DebugHelper.log_step("extract_page_complete", {
+                "page": page_num,
+                "pedidos_found": len(page_pedidos),
+                "selector": working_selector or "unknown"
+            })
+            DebugHelper.end_timer(start_time, f"extract_page_{page_num}", {
+                "success": True,
+                "pedidos": len(page_pedidos)
+            })
+            
+            logger.info("scraping_page_complete", page=page_num, pedidos=len(page_pedidos), selector=working_selector or ".nk-tb-item")
+            return page_pedidos
+            
+        except Exception as e:
+            DebugHelper.end_timer(start_time, f"extract_page_{page_num}", {"success": False, "error": str(e)})
+            logger.error("scraping_error", error=str(e), page=page_num)
+            raise
+    
     async def extract_all_pedidos(self, last_order_id: Optional[int] = None, limit: Optional[int] = None) -> List[Dict]:
         """Extrai todos os pedidos de todas as páginas.
         
