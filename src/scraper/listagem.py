@@ -394,14 +394,13 @@ class ListagemScraper:
         """Extrai todos os pedidos de todas as páginas.
         
         Args:
-            last_order_id: Se fornecido, para de buscar quando encontrar pedido com ID <= este valor.
-                          Retorna apenas pedidos com ID > last_order_id.
+            last_order_id: Se fornecido, retorna apenas pedidos com ID > last_order_id.
+                          A filtragem é aplicada após coletar todos os pedidos.
             limit: O número máximo de pedidos a retornar.
         """
         start_time = DebugHelper.start_timer("extract_all_pedidos_requests")
         all_pedidos = []
         page = 1
-        found_last_order = False
         
         DebugHelper.log_step("extract_all_pedidos_start_requests", {"last_order_id": last_order_id, "limit": limit})
         logger.info("scraping_page_start", page=page, last_order_id=last_order_id, limit=limit)
@@ -444,55 +443,25 @@ class ListagemScraper:
                 
                 page_pedidos = []
                 for i, row in enumerate(rows):
-                    # Verifica se já atingiu o limite antes de processar mais pedidos
-                    if limit is not None and len(all_pedidos) >= limit:
-                        logger.info("limit_reached", current_pedidos=len(all_pedidos), limit=limit)
-                        found_last_order = True  # Trata limite atingido como condição de parada
-                        break
-                    
                     pedido = self._extract_pedido_from_row(row)
                     if pedido:
-                        pedido_id = pedido.get("id")
-                        
-                        # Se last_order_id fornecido e encontramos pedido com ID <= last_order_id, para
-                        if last_order_id is not None and pedido_id is not None:
-                            try:
-                                pedido_id_int = int(pedido_id) if isinstance(pedido_id, str) and pedido_id.isdigit() else pedido_id
-                                if isinstance(pedido_id_int, int):
-                                    print(f"[INFO] Comparando pedido ID {pedido_id_int} com último ID conhecido {last_order_id}")
-                                    if pedido_id_int <= last_order_id:
-                                        found_last_order = True
-                                        logger.info("found_last_order", pedido_id=pedido_id_int, last_order_id=last_order_id, page=page)
-                                        print(f"[INFO] Pedido {pedido_id_int} é igual ou mais antigo, parando busca")
-                                        break
-                                    
-                                    # Adiciona apenas pedidos com ID > last_order_id
-                                    if pedido_id_int > last_order_id:
-                                        print(f"[INFO] Pedido {pedido_id_int} é mais recente, adicionando à lista")
-                                        page_pedidos.append(pedido)
-                            except (ValueError, TypeError):
-                                # Se não conseguir converter ID, adiciona o pedido
-                                page_pedidos.append(pedido)
-                        else:
-                            # Se não há last_order_id, adiciona todos
-                            page_pedidos.append(pedido)
+                        # Adiciona todos os pedidos encontrados
+                        # A filtragem por last_order_id será aplicada no final
+                        page_pedidos.append(pedido)
                     elif settings.DEBUG_HTML:
                         logger.debug("row_skipped", page=page, row_index=i)
                 
-                # Adiciona pedidos da página ANTES de verificar se deve parar
+                # Adiciona pedidos da página
                 all_pedidos.extend(page_pedidos)
                 print(f"[INFO] Página {page} processada: {len(page_pedidos)} pedidos encontrados")
                 
-                # Se encontrou último pedido conhecido OU atingiu o limite, para de buscar
-                if found_last_order or (limit is not None and len(all_pedidos) >= limit):
-                    logger.info("stopping_condition_met", page=page, last_order_id=last_order_id, limit=limit, total_collected=len(all_pedidos))
-                    if found_last_order:
-                        print(f"[INFO] Parando busca: encontrado pedido com ID <= {last_order_id}")
-                    else:
-                        print(f"[INFO] Parando busca: limite de {limit} pedidos atingido")
-                    DebugHelper.log_step("extract_all_pedidos_stopped_condition_met", {
+                # Verifica se atingiu o limite (antes da filtragem final)
+                # Se limit foi fornecido e já coletamos pedidos suficientes, para de buscar
+                if limit is not None and len(all_pedidos) >= limit:
+                    logger.info("limit_reached_before_filtering", current_pedidos=len(all_pedidos), limit=limit)
+                    print(f"[INFO] Parando busca: coletados {len(all_pedidos)} pedidos (limite: {limit})")
+                    DebugHelper.log_step("extract_all_pedidos_stopped_limit_reached", {
                         "page": page,
-                        "last_order_id": last_order_id,
                         "limit": limit,
                         "total_collected": len(all_pedidos)
                     })
