@@ -378,11 +378,27 @@ class ListagemScraperPlaywright:
                 print(f"[INFO] Processando página {page}...")
                 
                 page_pedidos = []
+                found_last_order = False
                 for i, row in enumerate(rows):
                     pedido = self._extract_pedido_from_row(row)
                     if pedido:
-                        # Adiciona todos os pedidos encontrados
-                        # A filtragem por last_order_id será aplicada no final
+                        pedido_id = pedido.get("id")
+                        
+                        # Otimização: Se last_order_id fornecido, para quando encontrar ID <= last_order_id
+                        # Isso evita processar páginas desnecessárias (performance crítica com 153+ páginas)
+                        if last_order_id is not None and pedido_id is not None:
+                            try:
+                                pedido_id_int = int(pedido_id) if isinstance(pedido_id, str) and pedido_id.isdigit() else pedido_id
+                                if isinstance(pedido_id_int, int) and pedido_id_int <= last_order_id:
+                                    found_last_order = True
+                                    logger.info("found_last_order_stopping", pedido_id=pedido_id_int, last_order_id=last_order_id, page=page)
+                                    print(f"[INFO] Encontrado pedido {pedido_id_int} <= {last_order_id}, parando coleta desta página")
+                                    break  # Para de coletar desta página
+                            except (ValueError, TypeError):
+                                pass  # Continua se não conseguir converter ID
+                        
+                        # Adiciona pedido encontrado
+                        # A filtragem final será aplicada depois para garantir correção
                         page_pedidos.append(pedido)
                     elif settings.DEBUG_HTML:
                         logger.debug("row_skipped", page=page, row_index=i)
@@ -390,6 +406,18 @@ class ListagemScraperPlaywright:
                 # Adiciona pedidos da página
                 all_pedidos.extend(page_pedidos)
                 print(f"[INFO] Página {page} processada: {len(page_pedidos)} pedidos encontrados")
+                
+                # Se encontrou último pedido conhecido, para de buscar mais páginas
+                # Otimização crítica: evita processar 153 páginas desnecessariamente
+                if found_last_order:
+                    logger.info("stopping_because_found_last_order", page=page, last_order_id=last_order_id)
+                    print(f"[INFO] Parando busca de páginas: encontrado pedido com ID <= {last_order_id}")
+                    DebugHelper.log_step("extract_all_pedidos_stopped_found_last_order", {
+                        "page": page,
+                        "last_order_id": last_order_id,
+                        "total_collected": len(all_pedidos)
+                    })
+                    break
                 
                 # Verifica se atingiu o limite (antes da filtragem final)
                 # Se limit foi fornecido e já coletamos pedidos suficientes, para de buscar
